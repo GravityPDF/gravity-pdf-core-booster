@@ -1,0 +1,24 @@
+.fileupload-non-image-container {
+    margin-bottom: 2mm;
+}
+
+.fileupload-images-container {
+    margin-top: 2mm;
+}
+
+.fileupload-images {
+    padding: 0 0 3%;
+    text-align: center;
+}
+
+.fileupload-images-two-col .fileupload-images {
+    float: left;
+    width: 47%;
+    padding: 0 1.4% 3%;
+}
+
+.fileupload-images-three-col .fileupload-images {
+    float: left;
+    width: 30.3%;
+    padding: 0 1.5% 3%;
+}

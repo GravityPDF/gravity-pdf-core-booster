@@ -3,6 +3,7 @@
 namespace GFPDF\Plugins\CoreBooster;
 
 use GFPDF\Plugins\CoreBooster\Shared\DoesTemplateHaveGroup;
+use GFPDF\Plugins\CoreBooster\Shared\ImageInfo;
 use GFPDF\Plugins\CoreBooster\EnhancedLabels\Options\AddFields as LabelsAddFields;
 use GFPDF\Plugins\CoreBooster\EnhancedLabels\Options\DisplayFieldLabel;
 use GFPDF\Plugins\CoreBooster\EnhancedOptions\Options\AddFields as OptionsAddFields;
@@ -13,6 +14,10 @@ use GFPDF\Plugins\CoreBooster\FieldDescription\Options\AddFields as FieldDescrip
 use GFPDF\Plugins\CoreBooster\FieldDescription\Options\DisplayFieldDescription;
 use GFPDF\Plugins\CoreBooster\ProductTable\Options\AddFields as ProductTableAddFields;
 use GFPDF\Plugins\CoreBooster\ProductTable\Options\DisableProductTable;
+use GFPDF\Plugins\CoreBooster\EnhancedImages\Options\AddFields as EnhancedImagesAddFields;
+use GFPDF\Plugins\CoreBooster\EnhancedImages\ImageManipulation\Resize;
+use GFPDF\Plugins\CoreBooster\EnhancedImages\Options\DisplayImages;
+use GFPDF\Plugins\CoreBooster\EnhancedImages\Styles\AddStyles as ImagesAddStyles;
 
 use GFPDF\Helper\Licensing\EDD_SL_Plugin_Updater;
 use GFPDF\Helper\Helper_Abstract_Addon;
@@ -88,6 +93,10 @@ class Bootstrap extends Helper_Abstract_Addon {
 			new DisplayFieldDescription( $this->log ),
 			new ProductTableAddFields( $group_checker, $this->log ),
 			new DisableProductTable( $this->log ),
+			new EnhancedImagesAddFields( $group_checker ),
+			new Resize( new ImageInfo() ),
+			new DisplayImages( new ImageInfo() ),
+			new ImagesAddStyles()
 		] );
 
 		/* Run the setup */
