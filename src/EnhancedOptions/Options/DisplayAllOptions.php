@@ -10,8 +10,12 @@ use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllMultiselect;
 use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllProductOptions;
 use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllRadio;
 use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllSelect;
+use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllProduct;
+use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllOptions;
+use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllShipping;
+use GFPDF\Helper\Fields\Field_Products;
 use Monolog\Logger;
-use GFCommon;
+use GF_Field;
 
 /**
  * @package     Gravity PDF Core Booster
@@ -151,8 +155,114 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 	public function maybe_autoload_class( $class, $field, $entry ) {
 
 		/* Ensure the settings have been set and we aren't too early in the process */
-		if ( isset( $this->settings['show_all_options'] ) && is_array( $this->settings['show_all_options'] ) && ! GFCommon::is_product_field( $field->type ) ) {
+		if ( isset( $this->settings['show_all_options'] ) && is_array( $this->settings['show_all_options'] ) ) {
 			$option_config = $this->settings['show_all_options'];
+			$products = new Field_Products( new GF_Field(), $entry, $class->gform, $class->misc );
+
+			/*
+			 * Override the Product Select field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'product' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
+				$this->log->notice( 'Override Product Select field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllProduct( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
+
+			/*
+			 * Override the Product Radio field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'product' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
+				$this->log->notice( 'Override Product Radio field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllProduct( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
+
+			/*
+			 * Override the Option Select field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'option' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
+				$this->log->notice( 'Override Option Select field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllOptions( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
+
+			/*
+			 * Override the Option Radio field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'option' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
+				$this->log->notice( 'Override Option Radio field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllOptions( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
+
+			/*
+			 * Override the Option Checkbox field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'option' && $field->get_input_type() === 'checkbox' && isset( $option_config['Checkbox'] ) ) {
+				$this->log->notice( 'Override Option Radio field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllOptions( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
+
+			/*
+			 * Override the Shipping Checkbox field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'shipping' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
+				$this->log->notice( 'Override Shipping Select field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllShipping( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
+
+			/*
+			 * Override the Shipping Radio field HTML processing if configured to do so
+			 */
+			if ( $field->type === 'shipping' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
+				$this->log->notice( 'Override Shipping Radio field generator class', [
+					'f_id'    => $field->id,
+					'f_label' => $field->label,
+				] );
+
+				$class = new AllShipping( $field, $entry, $class->gform, $class->misc );
+				$class->set_products( $products );
+
+				return $class;
+			}
 
 			/*
 			 * Override Radio field HTML processing if configured to do so
