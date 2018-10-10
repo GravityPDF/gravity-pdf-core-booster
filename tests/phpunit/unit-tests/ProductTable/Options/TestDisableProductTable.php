@@ -85,6 +85,11 @@ class TestDisableProductTable extends WP_UnitTestCase {
 
 		$this->class->reset_settings();
 		$this->assertFalse( has_action( 'gfpdf_current_pdf_configuration', [ $this->class, 'disable_product_table' ] ) );
+
+		$this->class->apply_settings( [], [ 'settings' => [ 'group_product_fields' => 'Disable' ] ] );
+		$this->assertEquals( 10, has_action( 'gfpdf_disable_product_table', '__return_true' ) );
+		$this->class->reset_settings();
+		$this->assertFalse( has_action( 'gfpdf_disable_product_table', '__return_true' ) );
 	}
 
 	/**
