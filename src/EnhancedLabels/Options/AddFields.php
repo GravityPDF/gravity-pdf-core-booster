@@ -112,6 +112,7 @@ class AddFields implements Helper_Interface_Filters {
 					'Standard'    => esc_html__( 'Standard Label', 'gravity-pdf-core-booster' ),
 					'Admin'       => esc_html__( 'Admin Label', 'gravity-pdf-core-booster' ),
 					'Admin Empty' => esc_html__( 'Admin Label (if not empty)', 'gravity-pdf-core-booster' ),
+					'No Label'    => esc_html__( 'No Label', 'gravity-pdf-core-booster' ),
 				],
 				'std'     => 'Standard',
 				'tooltip' => '<h6>' . esc_html__( 'Field Label Display', 'gravity-pdf-core-booster' ) . '</h6>' . sprintf( esc_html__( 'Control which label should be displayed for each  in the PDF. The option %sAdmin Label (if not empty)%s will fallback to the Standard Label display if no admin label is entered for a particular field.', 'gravity-pdf-core-booster' ), '<code>', '</code>' ),
