@@ -74,7 +74,7 @@ install_depencency() {
 	tar --strip-components=1 -zxmf /tmp/gravityforms.tar.gz -C "$PWD/tmp/gravityforms"
 
 	#Gravity PDF
-	download https://downloads.wordpress.org/plugin/gravity-forms-pdf-extended.4.4.0.zip  /tmp/gravity-forms-pdf-extended.zip
+	download https://downloads.wordpress.org/plugin/gravity-forms-pdf-extended.latest-stable.zip  /tmp/gravity-forms-pdf-extended.zip
 	unzip -q -o /tmp/gravity-forms-pdf-extended.zip -d "$PWD/tmp/"
 }
 
