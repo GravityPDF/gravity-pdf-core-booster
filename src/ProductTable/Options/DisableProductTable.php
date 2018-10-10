@@ -92,11 +92,22 @@ class DisableProductTable implements Helper_Interface_Actions {
 	public function apply_settings( $entry, $settings ) {
 		$settings = $settings['settings'];
 
-		if ( isset( $settings['group_product_fields'] ) && $settings['group_product_fields'] === 'No' ) {
-			$this->log->notice( 'Disable product table in PDF' );
+		if ( isset( $settings['group_product_fields'] ) ) {
 
-			add_filter( 'gfpdf_current_pdf_configuration', [ $this, 'disable_product_table' ] );
+			if ( $settings['group_product_fields'] === 'No' ) {
+				$this->log->notice( 'Ungroup products from table in PDF' );
+
+				add_filter( 'gfpdf_current_pdf_configuration', [ $this, 'disable_product_table' ] );
+			}
+
+			if ( $settings['group_product_fields'] === 'Disable' ) {
+				$this->log->notice( 'Remove product table in PDF' );
+
+				add_filter( 'gfpdf_disable_product_table', '__return_true' );
+			}
 		}
+
+
 	}
 
 	/**
@@ -121,5 +132,6 @@ class DisableProductTable implements Helper_Interface_Actions {
 	 */
 	public function reset_settings() {
 		remove_filter( 'gfpdf_current_pdf_configuration', [ $this, 'disable_product_table' ] );
+		remove_filter( 'gfpdf_disable_product_table', '__return_true' );
 	}
 }
