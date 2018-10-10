@@ -95,8 +95,26 @@ class DisplayLabelOrValue implements Helper_Interface_Actions {
 		if ( isset( $settings['option_label_or_value'] ) && $settings['option_label_or_value'] === 'Value' ) {
 			$this->log->notice( 'Show field value instead of label in PDF' );
 
-			add_filter( 'gfpdf_show_field_value', '__return_true' );
+			add_filter( 'gfpdf_show_field_value', [ $this, 'maybe_show_field_value' ], 10, 2 );
 		}
+	}
+
+	/**
+	 * Show the value for all field types except Survey
+	 *
+	 * @param bool $enable
+	 * @param \GF_Field $field
+	 *
+	 * @return bool
+	 *
+	 * @since 1.1
+	 */
+	public function maybe_show_field_value( $enable, $field ) {
+		if ( $field === null || ! in_array( $field->type, [ 'survey' ] ) ) {
+			return true;
+		}
+
+		return $enable;
 	}
 
 	/**
@@ -105,6 +123,6 @@ class DisplayLabelOrValue implements Helper_Interface_Actions {
 	 * @since 1.0
 	 */
 	public function reset_settings() {
-		remove_filter( 'gfpdf_show_field_value', '__return_true' );
+		remove_filter( 'gfpdf_show_field_value', [ $this, 'maybe_show_field_value' ] );
 	}
 }

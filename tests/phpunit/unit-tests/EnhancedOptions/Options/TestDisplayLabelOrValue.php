@@ -94,6 +94,6 @@ class TestDisplayLabelOrValue extends WP_UnitTestCase {
 
 		/* Check our filter exist when our option is set */
 		$this->class->apply_settings( [], $settings );
-		$this->assertEquals( 10, has_filter( 'gfpdf_show_field_value', '__return_true' ) );
+		$this->assertEquals( 10, has_filter( 'gfpdf_show_field_value', [ $this->class, 'maybe_show_field_value' ] ) );
 	}
 }
