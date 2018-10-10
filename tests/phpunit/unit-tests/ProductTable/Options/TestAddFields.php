@@ -61,28 +61,30 @@ class TestAddFields extends WP_UnitTestCase {
 	public function setUp() {
 
 		/* Setup our class mocks */
-		$form_settings = $this->getMock(
-			'\GFPDF\Model\Model_Form_Settings',
-			[ 'get_template_name_from_current_page' ],
-			[
-				GPDFAPI::get_form_class(),
-				GPDFAPI::get_log_class(),
-				GPDFAPI::get_data_class(),
-				GPDFAPI::get_options_class(),
-				GPDFAPI::get_misc_class(),
-				GPDFAPI::get_notice_class(),
-				GPDFAPI::get_templates_class(),
-			]
-		);
+		$form_settings = $this->getMockBuilder( '\GFPDF\Model\Model_Form_Settings' )
+		                      ->setConstructorArgs( [
+			                      GPDFAPI::get_form_class(),
+			                      GPDFAPI::get_log_class(),
+			                      GPDFAPI::get_data_class(),
+			                      GPDFAPI::get_options_class(),
+			                      GPDFAPI::get_misc_class(),
+			                      GPDFAPI::get_notice_class(),
+			                      GPDFAPI::get_templates_class(),
+		                      ] )
+		                      ->setMethods( [ 'get_template_name_from_current_page' ] )
+		                      ->getMock();
 
 		$form_settings->method( 'get_template_name_from_current_page' )
 		              ->will( $this->onConsecutiveCalls( 'zadani', 'zadani', 'sabre', 'sabre', 'other', 'other' ) );
 
-		$template = $this->getMock(
-			'\GFPDF\Helper\Helper_Templates',
-			[ 'get_template_info_by_id' ],
-			[ GPDFAPI::get_log_class(), GPDFAPI::get_data_class(), GPDFAPI::get_form_class() ]
-		);
+		$template = $this->getMockBuilder( '\GFPDF\Helper\Helper_Templates' )
+		                 ->setConstructorArgs( [
+			                 GPDFAPI::get_log_class(),
+			                 GPDFAPI::get_data_class(),
+			                 GPDFAPI::get_form_class(),
+		                 ] )
+		                 ->setMethods( [ 'get_template_info_by_id' ] )
+		                 ->getMock();
 
 		$template->method( 'get_template_info_by_id' )
 		         ->will(
