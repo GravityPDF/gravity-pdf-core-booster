@@ -13,6 +13,9 @@ use GFPDF\Plugins\CoreBooster\FieldDescription\Options\AddFields as FieldDescrip
 use GFPDF\Plugins\CoreBooster\FieldDescription\Options\DisplayFieldDescription;
 use GFPDF\Plugins\CoreBooster\ProductTable\Options\AddFields as ProductTableAddFields;
 use GFPDF\Plugins\CoreBooster\ProductTable\Options\DisableProductTable;
+use GFPDF\Plugins\CoreBooster\Notes\Options\AddFields as NotesAddFields;
+use GFPDF\Plugins\CoreBooster\Notes\Options\DisplayNotes;
+use GFPDF\Plugins\CoreBooster\Notes\Styles\AddStyles as NotesAddStyles;
 
 use GFPDF\Helper\Licensing\EDD_SL_Plugin_Updater;
 use GFPDF\Helper\Helper_Abstract_Addon;
@@ -88,6 +91,9 @@ class Bootstrap extends Helper_Abstract_Addon {
 			new DisplayFieldDescription( $this->log ),
 			new ProductTableAddFields( $group_checker, $this->log ),
 			new DisableProductTable( $this->log ),
+			new NotesAddFields( $group_checker, $this->log ),
+			new DisplayNotes( $this->log ),
+			new NotesAddStyles( $this->log ),
 		] );
 
 		/* Run the setup */
