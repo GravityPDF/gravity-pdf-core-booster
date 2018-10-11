@@ -57,7 +57,8 @@ class TestDisplayLabelOrValue extends WP_UnitTestCase {
 	 * @since 1.0
 	 */
 	public function setUp() {
-		$this->class = new DisplayLabelOrValue( $GLOBALS['GFPDF_Test']->log );
+		$this->class = new DisplayLabelOrValue();
+		$this->class->set_logger( $GLOBALS['GFPDF_Test']->log );
 		$this->class->init();
 	}
 

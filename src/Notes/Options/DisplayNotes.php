@@ -3,7 +3,7 @@
 namespace GFPDF\Plugins\CoreBooster\Notes\Options;
 
 use GFPDF\Helper\Helper_Interface_Actions;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 
 /**
  * @package     Gravity PDF Core Booster
@@ -45,24 +45,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DisplayNotes implements Helper_Interface_Actions {
 
 	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
 	 * @since 1.1
 	 */
-	protected $log;
-
-	/**
-	 * DisplayLabelOrValue constructor.
-	 *
-	 * @param Logger $log
-	 *
-	 * @since 1.1
-	 */
-	public function __construct( Logger $log ) {
-		$this->log = $log;
-	}
+	use Helper_Trait_Logger;
 
 	/**
 	 * Initialise our module
@@ -93,7 +78,7 @@ class DisplayNotes implements Helper_Interface_Actions {
 		$settings = $settings['settings'];
 
 		if ( isset( $settings['display_entry_notes'] ) && $settings['display_entry_notes'] === 'Yes' ) {
-			$this->log->notice( 'Show Entry Notes in PDF' );
+			$this->logger->notice( 'Show Entry Notes in PDF' );
 
 			add_action( 'gfpdf_post_html_fields', [ $this, 'add_entry_notes' ], 5, 2 );
 		}

@@ -57,7 +57,8 @@ class TestAddStyles extends WP_UnitTestCase {
 	 * @since 1.0
 	 */
 	public function setUp() {
-		$this->class = new AddStyles( $GLOBALS['GFPDF_Test']->log );
+		$this->class = new AddStyles();
+		$this->class->set_logger( $GLOBALS['GFPDF_Test']->log );
 		$this->class->init();
 	}
 

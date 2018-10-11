@@ -57,7 +57,8 @@ class TestDisplayAllOptions extends WP_UnitTestCase {
 	 * @since 1.0
 	 */
 	public function setUp() {
-		$this->class = new DisplayAllOptions( $GLOBALS['GFPDF_Test']->log );
+		$this->class = new DisplayAllOptions();
+		$this->class->set_logger( $GLOBALS['GFPDF_Test']->log );
 		$this->class->init();
 	}
 
@@ -137,7 +138,7 @@ class TestDisplayAllOptions extends WP_UnitTestCase {
 
 		/* We aren't passing in the Gravity PDF field class so we need to cheat to ensure these are available */
 		$field->gform = \GPDFAPI::get_form_class();
-		$field->misc = \GPDFAPI::get_misc_class();
+		$field->misc  = \GPDFAPI::get_misc_class();
 
 		/* Check we still get blank when the incorrect field is passed */
 		$results = $this->class->maybe_autoload_class( $field, $field, [ 'form_id' => 0 ] );

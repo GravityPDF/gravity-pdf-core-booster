@@ -3,6 +3,7 @@
 namespace GFPDF\Plugins\CoreBooster\ProductTable\Options;
 
 use GFPDF\Helper\Helper_Interface_Actions;
+use GFPDF\Helper\Helper_Trait_Logger;
 use Monolog\Logger;
 
 /**
@@ -45,24 +46,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DisableProductTable implements Helper_Interface_Actions {
 
 	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
-	 * @since 1.0
+	 * @since 1.1
 	 */
-	protected $log;
-
-	/**
-	 * DisableProductTable constructor.
-	 *
-	 * @param Logger $log
-	 *
-	 * @since 1.0
-	 */
-	public function __construct( Logger $log ) {
-		$this->log = $log;
-	}
+	use Helper_Trait_Logger;
 
 	/**
 	 * Initialise our module
@@ -95,13 +81,13 @@ class DisableProductTable implements Helper_Interface_Actions {
 		if ( isset( $settings['group_product_fields'] ) ) {
 
 			if ( $settings['group_product_fields'] === 'No' ) {
-				$this->log->notice( 'Ungroup products from table in PDF' );
+				$this->logger->notice( 'Ungroup products from table in PDF' );
 
 				add_filter( 'gfpdf_current_pdf_configuration', [ $this, 'disable_product_table' ] );
 			}
 
 			if ( $settings['group_product_fields'] === 'Disable' ) {
-				$this->log->notice( 'Remove product table in PDF' );
+				$this->logger->notice( 'Remove product table in PDF' );
 
 				add_filter( 'gfpdf_disable_product_table', '__return_true' );
 			}

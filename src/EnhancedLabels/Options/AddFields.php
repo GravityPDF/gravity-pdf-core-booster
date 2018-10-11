@@ -4,7 +4,7 @@ namespace GFPDF\Plugins\CoreBooster\EnhancedLabels\Options;
 
 use GFPDF\Plugins\CoreBooster\Shared\DoesTemplateHaveGroup;
 use GFPDF\Helper\Helper_Interface_Filters;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 
 /**
  * @package     Gravity PDF Core Booster
@@ -46,6 +46,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AddFields implements Helper_Interface_Filters {
 
 	/**
+	 * @since 1.1
+	 */
+	use Helper_Trait_Logger;
+
+	/**
 	 * @var DoesTemplateHaveGroup
 	 *
 	 * @since 1.0
@@ -53,25 +58,14 @@ class AddFields implements Helper_Interface_Filters {
 	private $group_checker;
 
 	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
-	 * @since 1.0
-	 */
-	protected $log;
-
-	/**
 	 * AddFields constructor.
 	 *
 	 * @param DoesTemplateHaveGroup $group_checker
-	 * @param Logger                $log
 	 *
 	 * @since 1.0
 	 */
-	public function __construct( DoesTemplateHaveGroup $group_checker, Logger $log ) {
+	public function __construct( DoesTemplateHaveGroup $group_checker ) {
 		$this->group_checker = $group_checker;
-		$this->log           = $log;
 	}
 
 	/**
@@ -118,7 +112,7 @@ class AddFields implements Helper_Interface_Filters {
 				'tooltip' => '<h6>' . esc_html__( 'Field Label Display', 'gravity-pdf-core-booster' ) . '</h6>' . sprintf( esc_html__( 'Control which label should be displayed for each  in the PDF. The option %sAdmin Label (if not empty)%s will fallback to the Standard Label display if no admin label is entered for a particular field.', 'gravity-pdf-core-booster' ), '<code>', '</code>' ),
 			];
 
-			$this->log->notice( 'Add "field_label_display" field to settings' );
+			$this->logger->notice( 'Add "field_label_display" field to settings' );
 		}
 
 		return $settings;

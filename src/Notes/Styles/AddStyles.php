@@ -3,6 +3,7 @@
 namespace GFPDF\Plugins\CoreBooster\Notes\Styles;
 
 use GFPDF\Helper\Helper_Interface_Actions;
+use GFPDF\Helper\Helper_Trait_Logger;
 use Monolog\Logger;
 
 /**
@@ -45,24 +46,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AddStyles implements Helper_Interface_Actions {
 
 	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
 	 * @since 1.1
 	 */
-	protected $log;
-
-	/**
-	 * AddStyles constructor.
-	 *
-	 * @param Logger $log
-	 *
-	 * @since 1.1
-	 */
-	public function __construct( Logger $log ) {
-		$this->log = $log;
-	}
+	use Helper_Trait_Logger;
 
 	/**
 	 * Initialise our module
@@ -86,7 +72,7 @@ class AddStyles implements Helper_Interface_Actions {
 	 * @since 1.1
 	 */
 	public function add_styles() {
-		$this->log->notice( 'Include Global PDF CSS for Notes' );
+		$this->logger->notice( 'Include Global PDF CSS for Notes' );
 
 		echo '<style>' .
 		     file_get_contents( __DIR__ . '/notes-pdf-styles.css' ) .

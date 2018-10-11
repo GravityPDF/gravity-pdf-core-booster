@@ -3,7 +3,7 @@
 namespace GFPDF\Plugins\CoreBooster\FieldDescription\Options;
 
 use GFPDF\Helper\Helper_Interface_Actions;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 
 /**
  * @package     Gravity PDF Core Booster
@@ -45,24 +45,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DisplayFieldDescription implements Helper_Interface_Actions {
 
 	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
-	 * @since 1.0
+	 * @since 1.1
 	 */
-	protected $log;
-
-	/**
-	 * DisplayFieldDescription constructor.
-	 *
-	 * @param Logger $log
-	 *
-	 * @since 1.0
-	 */
-	public function __construct( Logger $log ) {
-		$this->log = $log;
-	}
+	use Helper_Trait_Logger;
 
 	/**
 	 * Initialise our module
@@ -93,7 +78,7 @@ class DisplayFieldDescription implements Helper_Interface_Actions {
 		$settings = $settings['settings'];
 
 		if ( isset( $settings['include_field_description'] ) && $settings['include_field_description'] === 'Yes' ) {
-			$this->log->notice( 'Show field descriptions in generated PDF.');
+			$this->logger->notice( 'Show field descriptions in generated PDF.');
 
 			add_filter( 'gfpdf_pdf_field_content', [ $this, 'add_field_description' ], 10, 4 );
 		}
