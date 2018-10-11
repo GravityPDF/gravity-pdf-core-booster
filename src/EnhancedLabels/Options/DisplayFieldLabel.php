@@ -105,6 +105,7 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 		if ( isset( $settings['field_label_display'] ) && $settings['field_label_display'] !== 'Standard' ) {
 			$this->label_type = $settings['field_label_display'];
 			add_filter( 'gfpdf_field_label', [ $this, 'change_field_label_display' ], 10, 2 );
+			add_filter( 'gfpdf_use_admin_label', [ $this, 'change_product_field_label_display' ] );
 		}
 	}
 
@@ -135,11 +136,31 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 	}
 
 	/**
+	 * Tell the Product table to use the Admin Labels to match the Gravity Forms Product table
+	 *
+	 * @param bool $use_admin_label
+	 *
+	 * @return bool
+	 *
+	 * @since 1.1
+	 */
+	public function change_product_field_label_display( $use_admin_label ) {
+		switch ( $this->label_type ) {
+			case 'Admin':
+			case 'Admin Empty':
+				return true;
+		}
+
+		return $use_admin_label;
+	}
+
+	/**
 	 * Remove the filter that alters the field label
 	 *
 	 * @since 1.0
 	 */
 	public function reset_settings() {
 		remove_filter( 'gfpdf_field_label', [ $this, 'change_field_label_display' ] );
+		remove_filter( 'gfpdf_use_admin_label', [ $this, 'change_product_field_label_display' ] );
 	}
 }

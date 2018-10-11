@@ -105,6 +105,17 @@ class TestDisplayFieldLabel extends WP_UnitTestCase {
 	}
 
 	/**
+	 * @since 1.1
+	 */
+	public function test_change_product_field_label_display() {
+		$this->assertFalse( $this->class->change_product_field_label_display( false ) );
+
+		$this->class->apply_settings( '', [ 'settings' => [ 'field_label_display' => 'Admin' ] ] );
+
+		$this->assertTrue( $this->class->change_product_field_label_display( false ) );
+	}
+
+	/**
 	 * @since 1.0
 	 */
 	public function test_reset_settings() {
