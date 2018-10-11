@@ -3,7 +3,7 @@
 namespace GFPDF\Plugins\CoreBooster\EnhancedLabels\Options;
 
 use GFPDF\Helper\Helper_Interface_Actions;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 
 /**
  * @package     Gravity PDF Core Booster
@@ -45,6 +45,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DisplayFieldLabel implements Helper_Interface_Actions {
 
 	/**
+	 * @since 1.1
+	 */
+	use Helper_Trait_Logger;
+
+	/**
 	 * Holds the user selection for the 'field_label_display' setting
 	 *
 	 * @var string
@@ -52,27 +57,6 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 	 * @since 1.0
 	 */
 	protected $label_type;
-
-	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
-	 * @since 1.0
-	 */
-	protected $log;
-
-	/**
-	 * DisplayFieldLabel constructor.
-	 *
-	 * @param Logger $log
-	 *
-	 * @since 1.0
-	 */
-	public function __construct( Logger $log ) {
-		$this->log = $log;
-	}
-
 
 	/**
 	 * Initialise our module
@@ -126,17 +110,17 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 	public function change_field_label_display( $label, $field ) {
 		switch ( $this->label_type ) {
 			case 'Admin':
-				$this->log->notice( 'Show admin field label in PDFs', [ 'f_id' => $field->id, 'f_label' => $field->label, 'f_admin_label' => $field->adminLabel ] );
+				$this->logger->notice( 'Show admin field label in PDFs', [ 'f_id' => $field->id, 'f_label' => $field->label, 'f_admin_label' => $field->adminLabel ] );
 				return $field->adminLabel;
 			break;
 
 			case 'Admin Empty':
-				$this->log->notice( 'Show admin field label in PDFs if not empty', [ 'f_id' => $field->id, 'f_label' => $field->label, 'f_admin_label' => $field->adminLabel ] );
+				$this->logger->notice( 'Show admin field label in PDFs if not empty', [ 'f_id' => $field->id, 'f_label' => $field->label, 'f_admin_label' => $field->adminLabel ] );
 				return ( strlen( $field->adminLabel ) === 0 ) ? $label : $field->adminLabel;
 			break;
 
 			case 'No Label':
-				$this->log->notice( 'Hide all field labels in PDF', [ 'f_id' => $field->id ] );
+				$this->logger->notice( 'Hide all field labels in PDF', [ 'f_id' => $field->id ] );
 				return '';
 			break;
 		}

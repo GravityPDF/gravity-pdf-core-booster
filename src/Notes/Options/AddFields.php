@@ -4,7 +4,7 @@ namespace GFPDF\Plugins\CoreBooster\Notes\Options;
 
 use GFPDF\Plugins\CoreBooster\Shared\DoesTemplateHaveGroup;
 use GFPDF\Helper\Helper_Interface_Filters;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 
 /**
  * @package     Gravity PDF Core Booster
@@ -46,6 +46,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AddFields implements Helper_Interface_Filters {
 
 	/**
+	 * @since 1.1
+	 */
+	use Helper_Trait_Logger;
+
+	/**
 	 * @var DoesTemplateHaveGroup
 	 *
 	 * @since 1.1
@@ -53,25 +58,14 @@ class AddFields implements Helper_Interface_Filters {
 	private $group_checker;
 
 	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
-	 * @since 1.1
-	 */
-	protected $log;
-
-	/**
 	 * AddFields constructor.
 	 *
 	 * @param DoesTemplateHaveGroup $group_checker
-	 * @param Logger                $log
 	 *
 	 * @since 1.1
 	 */
-	public function __construct( DoesTemplateHaveGroup $group_checker, Logger $log ) {
+	public function __construct( DoesTemplateHaveGroup $group_checker ) {
 		$this->group_checker = $group_checker;
-		$this->log           = $log;
 	}
 
 	/**
@@ -117,7 +111,7 @@ class AddFields implements Helper_Interface_Filters {
 				'tooltip' => '<h6>' . esc_html__( 'Show Entry Notes', 'gravity-pdf-core-booster' ) . '</h6>' . sprintf( esc_html__( 'When enabled, any notes associated with the entry will be appended to the end of the PDF.', 'gravity-pdf-core-booster' ), '<code>', '</code>' ),
 			];
 
-			$this->log->notice( 'Add display_entry_notes" field to settings' );
+			$this->logger->notice( 'Add display_entry_notes" field to settings' );
 		}
 
 		return $settings;

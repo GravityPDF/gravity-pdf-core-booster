@@ -77,23 +77,24 @@ class Bootstrap extends Helper_Abstract_Addon {
 	 */
 	public function init( $classes = [] ) {
 		/* Create new intances of the plugin's classes */
-		$group_checker = new DoesTemplateHaveGroup( GPDFAPI::get_mvc_class( 'Model_Form_Settings' ), GPDFAPI::get_templates_class(), $this->log );
+		$group_checker = new DoesTemplateHaveGroup( GPDFAPI::get_mvc_class( 'Model_Form_Settings' ), GPDFAPI::get_templates_class() );
+		$group_checker->set_logger( $this->log );
 
 		/* Register our classes and pass back up to the parent initialiser */
 		$classes = array_merge( $classes, [
-			new LabelsAddFields( $group_checker, $this->log ),
-			new DisplayFieldLabel( $this->log ),
-			new OptionsAddFields( $group_checker, $this->log ),
-			new DisplayAllOptions( $this->log ),
-			new DisplayLabelOrValue( $this->log ),
-			new OptionsAddStyles( $this->log ),
-			new FieldDescriptionAddFields( $group_checker, $this->log ),
-			new DisplayFieldDescription( $this->log ),
-			new ProductTableAddFields( $group_checker, $this->log ),
-			new DisableProductTable( $this->log ),
-			new NotesAddFields( $group_checker, $this->log ),
-			new DisplayNotes( $this->log ),
-			new NotesAddStyles( $this->log ),
+			new LabelsAddFields( $group_checker ),
+			new DisplayFieldLabel(),
+			new OptionsAddFields( $group_checker ),
+			new DisplayAllOptions(),
+			new DisplayLabelOrValue(),
+			new OptionsAddStyles(),
+			new FieldDescriptionAddFields( $group_checker ),
+			new DisplayFieldDescription(),
+			new ProductTableAddFields( $group_checker ),
+			new DisableProductTable(),
+			new NotesAddFields( $group_checker ),
+			new DisplayNotes(),
+			new NotesAddStyles(),
 		] );
 
 		/* Run the setup */

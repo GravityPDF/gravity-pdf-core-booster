@@ -14,7 +14,7 @@ use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllProduct;
 use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllOptions;
 use GFPDF\Plugins\CoreBooster\EnhancedOptions\Fields\AllShipping;
 use GFPDF\Helper\Fields\Field_Products;
-use Monolog\Logger;
+use GFPDF\Helper\Helper_Trait_Logger;
 use GF_Field;
 
 /**
@@ -57,31 +57,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Filters {
 
 	/**
+	 * @since 1.1
+	 */
+	use Helper_Trait_Logger;
+
+	/**
 	 * @var array The current PDF Settings
 	 *
 	 * @since 1.0
 	 */
 	private $settings;
-
-	/**
-	 * Holds our log class
-	 *
-	 * @var \Monolog\Logger
-	 *
-	 * @since 1.0
-	 */
-	protected $log;
-
-	/**
-	 * DisplayAllOptions constructor.
-	 *
-	 * @param Logger $log
-	 *
-	 * @since 1.0
-	 */
-	public function __construct( Logger $log ) {
-		$this->log = $log;
-	}
 
 	/**
 	 * Initialise our module
@@ -163,7 +148,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Product Select field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'product' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->log->notice( 'Override Product Select field generator class', [
+				$this->logger->notice( 'Override Product Select field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -178,7 +163,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Product Radio field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'product' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->log->notice( 'Override Product Radio field generator class', [
+				$this->logger->notice( 'Override Product Radio field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -193,7 +178,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Option Select field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'option' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->log->notice( 'Override Option Select field generator class', [
+				$this->logger->notice( 'Override Option Select field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -208,7 +193,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Option Radio field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'option' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->log->notice( 'Override Option Radio field generator class', [
+				$this->logger->notice( 'Override Option Radio field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -223,7 +208,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Option Checkbox field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'option' && $field->get_input_type() === 'checkbox' && isset( $option_config['Checkbox'] ) ) {
-				$this->log->notice( 'Override Option Radio field generator class', [
+				$this->logger->notice( 'Override Option Radio field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -238,7 +223,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Shipping Checkbox field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'shipping' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->log->notice( 'Override Shipping Select field generator class', [
+				$this->logger->notice( 'Override Shipping Select field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -253,7 +238,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Shipping Radio field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'shipping' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->log->notice( 'Override Shipping Radio field generator class', [
+				$this->logger->notice( 'Override Shipping Radio field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -268,7 +253,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Radio field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->log->notice( 'Override Radio field generator class', [
+				$this->logger->notice( 'Override Radio field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -280,7 +265,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Select field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->log->notice( 'Override Select field generator class', [
+				$this->logger->notice( 'Override Select field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -292,7 +277,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Checkbox field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'checkbox' && isset( $option_config['Checkbox'] ) ) {
-				$this->log->notice( 'Override Checkbox field generator class', [
+				$this->logger->notice( 'Override Checkbox field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
 				] );
@@ -304,7 +289,7 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Multiselect field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'multiselect' && isset( $option_config['Multiselect'] ) ) {
-				$this->log->notice(
+				$this->logger->notice(
 					'Override Multiselect field generator class', [
 					'f_id'    => $field->id,
 					'f_label' => $field->label,
