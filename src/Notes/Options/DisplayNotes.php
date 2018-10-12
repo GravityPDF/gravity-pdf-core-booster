@@ -63,7 +63,7 @@ class DisplayNotes implements Helper_Interface_Actions {
 	 */
 	public function add_actions() {
 		add_action( 'gfpdf_pre_html_fields', [ $this, 'apply_settings' ], 10, 2 );
-		add_action( 'gfpdf_post_html_fields', [ $this, 'reset_settings' ], 10 );
+		add_action( 'gfpdf_post_html_fields', [ $this, 'reset_settings' ], 25 );
 	}
 
 	/**
@@ -80,7 +80,7 @@ class DisplayNotes implements Helper_Interface_Actions {
 		if ( isset( $settings['display_entry_notes'] ) && $settings['display_entry_notes'] === 'Yes' ) {
 			$this->logger->notice( 'Show Entry Notes in PDF' );
 
-			add_action( 'gfpdf_post_html_fields', [ $this, 'add_entry_notes' ], 5, 2 );
+			add_action( 'gfpdf_post_html_fields', [ $this, 'add_entry_notes' ], 20, 2 );
 		}
 	}
 
