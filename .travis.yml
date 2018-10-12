@@ -19,4 +19,3 @@ before_script:
 
 script:
  - vendor/bin/phpunit -c tests/phpunit/phpunit.xml.dist
- - vendor/bin/phpunit -c tests/phpunit/phpunit.xml.dist --group ajax
