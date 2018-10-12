@@ -64,7 +64,23 @@ class FilterFields implements Helper_Interface_Filters {
 	 * @since 1.1
 	 */
 	public function add_filters() {
-		add_filter( 'gfpdf_field_middleware', [ $this, 'filter_fields' ], 10, 5 );
+		add_filter( 'gfpdf_current_pdf_configuration', [ $this, 'disable_excluded_fields' ], 10 );
+		add_filter( 'gfpdf_field_middleware', [ $this, 'filter_fields' ], 20, 5 );
+	}
+
+	/**
+	 * @param array $config
+	 *
+	 * @return array
+	 *
+	 * @since 1.1
+	 */
+	public function disable_excluded_fields( $config ) {
+		if ( isset( $config['settings']['form_field_selector'] ) ) {
+			$config['meta']['exclude'] = false;
+		}
+
+		return $config;
 	}
 
 	/**

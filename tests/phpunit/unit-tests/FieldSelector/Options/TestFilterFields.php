@@ -66,10 +66,26 @@ class TestFilterFields extends WP_UnitTestCase {
 	 * @since 1.1
 	 */
 	public function test_add_filter() {
-		$this->assertEquals( 10, has_filter( 'gfpdf_field_middleware', [
+		$this->assertEquals( 10, has_filter( 'gfpdf_current_pdf_configuration', [
+			$this->class,
+			'disable_excluded_fields',
+		] ) );
+
+		$this->assertEquals( 20, has_filter( 'gfpdf_field_middleware', [
 			$this->class,
 			'filter_fields',
 		] ) );
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public function test_disable_excluded_fields() {
+		$results = $this->class->disable_excluded_fields( [ 'settings' => [], 'meta' => [ 'exclude' => true ] ] );
+		$this->assertTrue( $results['meta']['exclude'] );
+
+		$results = $this->class->disable_excluded_fields( [ 'settings' => [ 'form_field_selector' => '' ], 'meta' => [ 'exclude' => true ] ] );
+		$this->assertFalse( $results['meta']['exclude'] );
 	}
 
 	/**
