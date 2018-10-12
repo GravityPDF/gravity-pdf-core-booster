@@ -2,6 +2,7 @@
 
 namespace GFPDF\Plugins\CoreBooster;
 
+use GFPDF\Plugins\CoreBooster\FieldSelector\Options\FilterFields;
 use GFPDF\Plugins\CoreBooster\Shared\DoesTemplateHaveGroup;
 use GFPDF\Plugins\CoreBooster\EnhancedLabels\Options\AddFields as LabelsAddFields;
 use GFPDF\Plugins\CoreBooster\EnhancedLabels\Options\DisplayFieldLabel;
@@ -86,6 +87,7 @@ class Bootstrap extends Helper_Abstract_Addon {
 		$classes = array_merge( $classes, [
 			new FieldSelectorAddFields( $group_checker, GPDFAPI::get_form_class() ),
 			new FieldSelectorRegisterScriptsAndStyles( GPDFAPI::get_misc_class(), GPDFAPI::get_form_class() ),
+			new FilterFields(),
 			new LabelsAddFields( $group_checker ),
 			new DisplayFieldLabel(),
 			new OptionsAddFields( $group_checker ),
