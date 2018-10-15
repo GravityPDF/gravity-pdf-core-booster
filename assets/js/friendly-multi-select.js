@@ -1,6 +1,12 @@
 (function ($) {
 
   /**
+   * @var string The current saved template
+   * @since 1.0
+   */
+  var currentTemplate
+
+  /**
    * Enable a specific field type for the current field
    *
    * @param $field
@@ -42,11 +48,7 @@
     $field.multiSelectGpdf('refresh')
   }
 
-  /**
-   * Initialize
-   */
-  $(function () {
-
+  function initialize () {
     /* Initialise our friendly selector */
     $('.gfpdf-friendly-select').each(function () {
       var $self = $(this)
@@ -105,6 +107,24 @@
           break
       }
     }).trigger('change')
+  }
 
+  /**
+   * Initialize
+   */
+  $(function () {
+    initialize()
+
+    var $select = $('#gfpdf_settings\\[template\\]')
+    currentTemplate = $select.val()
+    $select.parent().change(function () {
+      var value = $(this).find('select').val()
+
+      if (currentTemplate !== value) {
+        currentTemplate = value
+
+        setTimeout(initialize, 6000)
+      }
+    })
   })
 })(jQuery)
