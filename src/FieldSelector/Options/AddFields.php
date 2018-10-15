@@ -137,7 +137,7 @@ class AddFields implements Helper_Interface_Filters {
 	 * @since 1.1
 	 */
 	protected function get_form_fields() {
-		$form_id = ( isset( $_GET['id'] ) ) ? (int) $_GET['id'] : 0;
+		$form_id = ( isset( $_REQUEST['id'] ) ) ? (int) $_REQUEST['id'] : 0;
 		$form    = $this->gform->get_form( $form_id );
 
 		if ( ! is_array( $form ) || empty( $form['fields'] ) ) {
