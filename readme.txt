@@ -8,6 +8,10 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.1.1, October 16, 2018 =
+* Bug: Fix fatal backwards compatibility error due to missing argument in Enhanced Options feature
+* Bug: Fix padding display issues when the field label is removed
+
 = Version 1.1.0, October 16, 2018 =
 * Feature: UI to Include or Exclude Gravity Form fields in the PDF.
 * Feature: Option to display Entry Notes at the end of the PDF
