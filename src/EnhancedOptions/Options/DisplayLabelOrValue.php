@@ -94,7 +94,7 @@ class DisplayLabelOrValue implements Helper_Interface_Actions {
 	 *
 	 * @since 1.1
 	 */
-	public function maybe_show_field_value( $enable, $field ) {
+	public function maybe_show_field_value( $enable, $field = null ) {
 		if ( $field === null || ! in_array( $field->type, [ 'survey' ] ) ) {
 			return true;
 		}
