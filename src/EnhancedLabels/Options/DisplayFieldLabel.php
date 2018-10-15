@@ -90,10 +90,6 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 			$this->label_type = $settings['field_label_display'];
 			add_filter( 'gfpdf_field_label', [ $this, 'change_field_label_display' ], 10, 2 );
 			add_filter( 'gfpdf_use_admin_label', [ $this, 'change_product_field_label_display' ] );
-
-			if ( $this->label_type === 'No Label' ) {
-				add_filter( 'gfpdf_field_html_value', [ $this, 'remove_label_markup' ] );
-			}
 		}
 	}
 
@@ -148,19 +144,6 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 	}
 
 	/**
-	 * Remove excess Label mark-up
-	 *
-	 * @param $html
-	 *
-	 * @return string
-	 *
-	 * @since 1.1
-	 */
-	public function remove_label_markup( $html ) {
-		return str_replace( '<div class="label"><strong></strong></div>', '', $html );
-	}
-
-	/**
 	 * Remove the filter that alters the field label
 	 *
 	 * @since 1.0
@@ -168,6 +151,5 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 	public function reset_settings() {
 		remove_filter( 'gfpdf_field_label', [ $this, 'change_field_label_display' ] );
 		remove_filter( 'gfpdf_use_admin_label', [ $this, 'change_product_field_label_display' ] );
-		remove_filter( 'gfpdf_field_html_value', [ $this, 'remove_label_markup' ] );
 	}
 }

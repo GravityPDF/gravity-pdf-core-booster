@@ -128,11 +128,5 @@ class TestDisplayFieldLabel extends WP_UnitTestCase {
 
 		$this->class->reset_settings();
 		$this->assertFalse( has_action( 'gfpdf_field_label', [ $this->class, 'change_field_label_display' ] ) );
-
-		$this->class->apply_settings( '', [ 'settings' => [ 'field_label_display' => 'No Label' ] ] );
-		$this->assertEquals( 10, has_action( 'gfpdf_field_html_value', [ $this->class, 'remove_label_markup' ] ) );
-
-		$this->class->reset_settings();
-		$this->assertFalse( has_action( 'gfpdf_field_html_value', [ $this->class, 'remove_label_markup' ] ) );
 	}
 }
