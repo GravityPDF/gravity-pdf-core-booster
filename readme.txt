@@ -11,10 +11,10 @@ User's with a valid, active license key can receive support for this plugin by f
 = Version 1.1.0, October 16, 2018 =
 * Feature: UI to Include or Exclude Gravity Form fields in the PDF.
 * Feature: Option to display Entry Notes at the end of the PDF
-* Feature: `All Options` support for individual Products, Options, and Shipping Fields
-* Feature: New option to disable Product table (Gravity PDF 5.1 required)
+* Feature: `All Options` support for individual Products, Options, and Shipping Field
 * Feature: Product table will use Admin Label when option enabled.
 * Feature: New option to disable Field Label
+* Feature: New option to disable Product table (Gravity PDF 5.1 required)
 * Bug: Prevent Survey fields showing their values (Gravity PDF 5.1 required)
 
 = Version 1.0.1, October 30, 2017 =
