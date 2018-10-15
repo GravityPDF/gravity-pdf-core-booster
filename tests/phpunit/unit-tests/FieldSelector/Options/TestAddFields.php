@@ -126,7 +126,7 @@ class TestAddFields extends WP_UnitTestCase {
 	 * @since 1.1
 	 */
 	public function test_add_template_option() {
-		$_GET['id'] = $this->form_id;
+		$_REQUEST['id'] = $this->form_id;
 
 		/* Check our option is included */
 		$results = $this->class->add_template_option( [] );
@@ -145,7 +145,7 @@ class TestAddFields extends WP_UnitTestCase {
 		remove_filter( 'gfpdf_override_field_selector_fields', '__return_true' );
 
 		/* Check the setting is disabled when no Gravity Form found */
-		$_GET['id'] = 0;
+		$_REQUEST['id'] = 0;
 		$results    = $this->class->add_template_option( [] );
 		$this->assertCount( 0, $results );
 	}
@@ -154,7 +154,7 @@ class TestAddFields extends WP_UnitTestCase {
 	 * @since 1.1
 	 */
 	public function test_form_field_list() {
-		$_GET['id'] = $this->form_id;
+		$_REQUEST['id'] = $this->form_id;
 		$results    = $this->class->add_template_option( [] );
 
 		$fields = $results['form_field_selector']['options'];
