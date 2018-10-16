@@ -96,11 +96,9 @@ class AddFields implements Helper_Interface_Filters {
 	 */
 	public function add_template_option( $settings ) {
 
-		$override          = apply_filters( 'gfpdf_override_product_table', false, $settings ); /* Change this to true to override the core / universal check */
-		$exclude_templates = apply_filters( 'gfpdf_excluded_templates', [
-			'gpdf-cellulose',
-			'gpdf-colossus',
-		], $settings, 'product-field' ); /* Exclude this option for specific templates */
+		$override               = apply_filters( 'gfpdf_override_product_table', false, $settings ); /* Change this to true to override the core / universal check */
+		$exclude_templates_list = ( version_compare( PDF_EXTENDED_VERSION, '5.1.0', '>=' ) ) ? [] : [ 'gpdf-cellulose' ];
+		$exclude_templates      = apply_filters( 'gfpdf_excluded_templates', $exclude_templates_list, $settings, 'product-field' ); /* Exclude this option for specific templates */
 
 		if ( ! in_array( $this->group_checker->get_template_name(), $exclude_templates ) && ( $override || $this->group_checker->has_group() ) ) {
 			$settings['group_product_fields'] = [
