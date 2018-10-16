@@ -13,7 +13,9 @@
 
     $field.find('option').each(function () {
       if ($.inArray(GPDFCOREBOOSTER.form[this.value], type) !== -1) {
-        $(this).prop('disabled', false)
+        $(this)
+          .prop('disabled', false)
+          .prop('selected', true)
       }
     })
 
