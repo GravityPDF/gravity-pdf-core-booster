@@ -1,12 +1,6 @@
 (function ($) {
 
   /**
-   * @var string The current saved template
-   * @since 1.0
-   */
-  var currentTemplate
-
-  /**
    * Enable a specific field type for the current field
    *
    * @param $field
@@ -18,7 +12,7 @@
     }
 
     $field.find('option').each(function () {
-      if ($.inArray(GPDFCOREBOOSTER[this.value], type) !== -1) {
+      if ($.inArray(GPDFCOREBOOSTER.form[this.value], type) !== -1) {
         $(this).prop('disabled', false)
       }
     })
@@ -115,16 +109,9 @@
   $(function () {
     initialize()
 
-    var $select = $('#gfpdf_settings\\[template\\]')
-    currentTemplate = $select.val()
-    $select.parent().change(function () {
-      var value = $(this).find('select').val()
-
-      if (currentTemplate !== value) {
-        currentTemplate = value
-
-        setTimeout(initialize, 6000)
-      }
+    /* Reinitialise on template loaded */
+    $(document).on('gfpdf_template_loaded', function () {
+      initialize()
     })
   })
 })(jQuery)
