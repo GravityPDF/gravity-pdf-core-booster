@@ -94,30 +94,32 @@ class DisplayNotes implements Helper_Interface_Actions {
 		$notes = \GFFormsModel::get_lead_notes( $entry['id'] );
 
 		if ( count( $notes ) > 0 ): ?>
-			<h3><?= esc_html__( 'Notes', 'gravityforms' ) ?></h3>
-			<?php foreach ( $notes as $note ): ?>
-				<div class="note">
-					<div class="note-avatar">
-						<img src="<?= get_avatar_url( $note->user_id, [ 'size' => ( 48 * 2 ) ] ) ?>" />
-					</div>
+			<div id="entry-notes">
+				<h3><?= esc_html__( 'Notes', 'gravityforms' ) ?></h3>
+				<?php foreach ( $notes as $note ): ?>
+					<div class="note">
+						<div class="note-avatar">
+							<img src="<?= get_avatar_url( $note->user_id, [ 'size' => ( 48 * 2 ) ] ) ?>" />
+						</div>
 
-					<div class="note-meta">
-						<div class="note-label"><strong><?= esc_html( $note->user_name ) ?></strong></div>
+						<div class="note-meta">
+							<div class="note-label"><strong><?= esc_html( $note->user_name ) ?></strong></div>
 
-						<div class="note-additional-info">
-							<?= esc_html( $note->user_email ) ?><br>
-							<em>
-								<?= esc_html__( 'added on', 'gravityforms' ); ?>
-								<?= esc_html( \GFCommon::format_date( $note->date_created, false ) ) ?>
-							</em>
+							<div class="note-additional-info">
+								<?= esc_html( $note->user_email ) ?><br>
+								<em>
+									<?= esc_html__( 'added on', 'gravityforms' ); ?>
+									<?= esc_html( \GFCommon::format_date( $note->date_created, false ) ) ?>
+								</em>
+							</div>
+						</div>
+
+						<div class="note-value">
+							<?= nl2br( esc_html( $note->value ) ) ?>
 						</div>
 					</div>
-
-					<div class="note-value">
-						<?= nl2br( esc_html( $note->value ) ) ?>
-					</div>
-				</div>
-			<?php endforeach; ?>
+				<?php endforeach; ?>
+			</div>
 		<?php endif;
 	}
 
