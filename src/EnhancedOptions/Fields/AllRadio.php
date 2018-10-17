@@ -115,7 +115,7 @@ class AllRadio extends Field_Radio {
 		$checked          = ( wp_kses_post( $option['value'] ) === $selected ) ? '&#9746;' : '&#9744;';
 
 		return "<li id='field-{$this->field->id}-option-$key'>
-				<span style='font-size: 125%;'>$checked</span> $sanitized_option
+				<span style='font-size: 125%; font-family: DejavuSansCondensed'>$checked</span> $sanitized_option
 				</li>";
 	}
 }

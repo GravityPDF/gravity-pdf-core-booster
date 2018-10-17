@@ -91,7 +91,7 @@ class AllOptions extends Field_Option {
 		$checked     = ( $this->is_checked( wp_kses_post( $option_name ), $selected ) ) ? '&#9746;' : '&#9744;';
 
 		return "<li id='field-{$this->field->id}-option-$key'>
-				<span style='font-size: 125%;'>$checked</span> $sanitized_option
+				<span style='font-size: 125%; font-family: DejavuSansCondensed'>$checked</span> $sanitized_option
 				</li>";
 	}
 

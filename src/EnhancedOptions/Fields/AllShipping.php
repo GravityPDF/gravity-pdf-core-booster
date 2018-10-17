@@ -91,7 +91,7 @@ class AllShipping extends Field_Shipping {
 		$checked     = ( esc_html( $option_name ) === $selected ) ? '&#9746;' : '&#9744;';
 
 		return "<li id='field-{$this->field->id}-option-$key'>
-				<span style='font-size: 125%;'>$checked</span> $sanitized_option
+				<span style='font-size: 125%; font-family: DejavuSansCondensed'>$checked</span> $sanitized_option
 				</li>";
 	}
 }
