@@ -124,19 +124,19 @@ class TestAllCheckbox extends WP_UnitTestCase {
 		$results = $this->class->html();
 
 		/* Check all fields get rendered with an unchecked box */
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> Option 1" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9746;</span> Option 2" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> Option 3" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9746;</span> Option 4" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> Option 1" ) );
+		$this->assertNotFalse( strpos( $results, "&#9746;</span> Option 2" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> Option 3" ) );
+		$this->assertNotFalse( strpos( $results, "&#9746;</span> Option 4" ) );
 
 		/* Show all values */
 		add_filter( 'gfpdf_show_field_value', '__return_true' );
 
 		$results = $this->class->html();
 
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> Option 1 Value" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9746;</span> Option 2 Value" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> Option 3 Value" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9746;</span> Option 4 Value" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> Option 1 Value" ) );
+		$this->assertNotFalse( strpos( $results, "&#9746;</span> Option 2 Value" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> Option 3 Value" ) );
+		$this->assertNotFalse( strpos( $results, "&#9746;</span> Option 4 Value" ) );
 	}
 }

@@ -97,9 +97,9 @@ class TestAllProductRadio extends WP_UnitTestCase {
 		$results = $this->class->html();
 
 		/* Check all fields get rendered with an unchecked box */
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> First Choice2 - $4.00" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> Second Choice2 - $5.00" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9746;</span> Third Choice2 - $6.00" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> First Choice2 - $4.00" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> Second Choice2 - $5.00" ) );
+		$this->assertNotFalse( strpos( $results, "&#9746;</span> Third Choice2 - $6.00" ) );
 	}
 
 	/**
@@ -111,8 +111,8 @@ class TestAllProductRadio extends WP_UnitTestCase {
 
 		$results = $this->class->html();
 
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> vFirst Choice2 - $4.00" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9744;</span> vSecond Choice2 - $5.00" ) );
-		$this->assertNotFalse( strpos( $results, "<span style='font-size: 125%;'>&#9746;</span> vThird Choice2 - $6.00" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> vFirst Choice2 - $4.00" ) );
+		$this->assertNotFalse( strpos( $results, "&#9744;</span> vSecond Choice2 - $5.00" ) );
+		$this->assertNotFalse( strpos( $results, "&#9746;</span> vThird Choice2 - $6.00" ) );
 	}
 }
