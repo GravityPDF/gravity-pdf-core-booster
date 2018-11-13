@@ -57,7 +57,7 @@
       })
 
       /* If nothing yet selected, select all */
-      if ($(this).val() === null) {
+      if ($('#gfpdf_settings\\[name\\]').val() === '') {
         $(this).multiSelectGpdf('select_all')
       }
 
@@ -88,7 +88,7 @@
           disableFieldType($fieldSelected, 'html')
           break
       }
-    }).trigger('change')
+    })
 
     /* Toggle Product fields */
     var $products = $('input[name=gfpdf_settings\\[group_product_fields\\]]')
@@ -102,7 +102,7 @@
           enableFieldType($fieldSelected, ['product', 'quantity', 'option', 'total', 'shipping', 'tax', 'discount', 'subtotal', 'coupon'])
           break
       }
-    }).trigger('change')
+    })
   }
 
   /**

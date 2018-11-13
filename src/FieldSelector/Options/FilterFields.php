@@ -97,6 +97,11 @@ class FilterFields implements Helper_Interface_Filters {
 	 * @since 1.1
 	 */
 	public function filter_fields( $filter, $field, $entry, $form, $config ) {
+		/* All fields deselected so remove */
+		if ( ! isset( $config['settings']['form_field_selector'] ) && isset( $config['settings']['form_field_selector_enabled'] ) ) {
+			return true;
+		}
+
 		if ( isset( $config['settings']['form_field_selector'] ) && ! in_array( $field->id, (array) $config['settings']['form_field_selector'] ) ) {
 			$this->logger->notice( 'Removing field %s from PDF display due to Form Field Selector option' );
 			return true;

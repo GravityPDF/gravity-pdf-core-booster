@@ -118,9 +118,17 @@ class AddFields implements Helper_Interface_Filters {
 				'tooltip'    => '<h6>' . esc_html__( 'Display Fields', 'gravity-pdf-core-booster' ) . '</h6>' . sprintf( esc_html__( 'Control which Gravity Forms fields to display in the PDF. To use Product fields, set %1$sGroup Products%2$s to %1$sNo%2$s. To control HTML fields, enable the %1$sShow HTML Fields%2$s setting.', 'gravity-pdf-core-booster' ), '<em>', '</em>' ),
 			];
 
+			$settings['form_field_selector_enabled'] = [
+				'id'    => 'form_field_selector_enabled',
+				'type'  => 'hidden',
+				'class' => 'gfpdf-hidden',
+				'std'   => '1',
+			];
+
 			/* If we couldn't get the current fields, disable this feature */
 			if ( count( $settings['form_field_selector']['options'] ) === 0 ) {
 				unset( $settings['form_field_selector'] );
+				unset( $settings['form_field_selector_enabled'] );
 			} else {
 				$this->logger->notice( 'Add "form_field_selector" field to settings' );
 			}
