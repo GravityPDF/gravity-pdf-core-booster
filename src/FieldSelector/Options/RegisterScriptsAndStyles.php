@@ -120,8 +120,9 @@ class RegisterScriptsAndStyles {
 	 */
 	public function get_localized_data( $form_id ) {
 		return [
-			'form' => $this->get_form_fields( $form_id ),
-			'lang' => [
+			'gpdfVersion' => PDF_EXTENDED_VERSION,
+			'form'        => $this->get_form_fields( $form_id ),
+			'lang'        => [
 				'excluded'        => esc_html__( 'Excluded', 'gravity-pdf-core-booster' ),
 				'included'        => esc_html__( 'Included', 'gravity-pdf-core-booster' ),
 				'addAllFields'    => esc_html__( 'Add all fields', 'gravity-pdf-core-booster' ),
