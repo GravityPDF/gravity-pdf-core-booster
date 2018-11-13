@@ -8,6 +8,13 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.2.0, November 14, 2018 =
+* Feature: Allow Product table to be disabled in PDFs (from Gravity PDF 5.1+)
+* Feature: Templates Cellulose and Colossus can now Group / Ungroup the Product table (from Gravity PDF 5.1+)
+* Feature: All fields can be deactivated using the Display Fields setting (previously at least one field was required)
+* Bug: Fix checkbox field display issue on an empty PDF font cache
+* Bug: Fix issue automatically enabling Product and HTML field types in Display Fields setting when appropriate options change
+
 = Version 1.1.1, October 16, 2018 =
 * Bug: Fix fatal backwards compatibility error due to missing argument in Enhanced Options feature
 * Bug: Fix padding display issues when the field label is removed
