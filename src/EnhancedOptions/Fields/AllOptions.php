@@ -105,7 +105,7 @@ class AllOptions extends Field_Option {
 	 */
 	private function is_checked( $text, $selected ) {
 		foreach ( $selected as $item ) {
-			if ( $text === $item['option_name'] ) {
+			if ( esc_html( $text ) === $item['option_name'] ) {
 				return true;
 			}
 		}

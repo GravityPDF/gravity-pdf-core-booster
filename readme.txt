@@ -8,6 +8,9 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.2.1, December 3, 2018 =
+* Bug: Correctly check selected Option Field value when showing all options.
+
 = Version 1.2.0, November 14, 2018 =
 * Feature: Allow Product table to be disabled in PDFs (from Gravity PDF 5.1+)
 * Feature: Templates Cellulose and Colossus can now Group / Ungroup the Product table (from Gravity PDF 5.1+)
