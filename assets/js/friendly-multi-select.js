@@ -63,8 +63,10 @@
       })
 
       /* If nothing yet selected, select all */
-      if ($('#gfpdf_settings\\[name\\]').val() === '') {
+      var $selectorEnabled = $('#gfpdf_settings\\[form_field_selector_enabled\\]')
+      if ($selectorEnabled.val() === '0') {
         $(this).multiSelectGpdf('select_all')
+        $selectorEnabled.val('1')
       }
 
       $(this).parent().on('click', '.gfpdf-friendly-select-add-all', function () {
@@ -119,12 +121,10 @@
 
     /* Reinitialise on template loaded */
     if (version_compare('5.1.0-beta1', GPDFCOREBOOSTER.gpdfVersion, '<=')) {
-      console.log('new')
       $(document).on('gfpdf_template_loaded', function () {
         initialize()
       })
     } else {
-      console.log('old')
       var $select = $('#gfpdf_settings\\[template\\]')
       currentTemplate = $select.val()
       $select.parent().change(function () {

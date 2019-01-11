@@ -122,7 +122,7 @@ class AddFields implements Helper_Interface_Filters {
 				'id'    => 'form_field_selector_enabled',
 				'type'  => 'hidden',
 				'class' => 'gfpdf-hidden',
-				'std'   => '1',
+				'std'   => '0',
 			];
 
 			/* If we couldn't get the current fields, disable this feature */
