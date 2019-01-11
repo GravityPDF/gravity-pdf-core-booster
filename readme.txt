@@ -8,6 +8,9 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.2.2, January 15, 2019 =
+* Bug: Fix auto field selector so defaults to all fields selected for PDFs setup before the Core Booster is installed
+
 = Version 1.2.1, December 3, 2018 =
 * Bug: Correctly check selected Option Field value when showing all options.
 
