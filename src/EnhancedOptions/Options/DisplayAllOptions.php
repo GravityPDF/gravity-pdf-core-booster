@@ -19,7 +19,7 @@ use GF_Field;
 
 /**
  * @package     Gravity PDF Core Booster
- * @copyright   Copyright (c) 2018, Blue Liquid Designs
+ * @copyright   Copyright (c) 2019, Blue Liquid Designs
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /*
     This file is part of Gravity PDF Core Booster.
 
-    Copyright (C) 2018, Blue Liquid Designs
+    Copyright (c) 2019, Blue Liquid Designs
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
