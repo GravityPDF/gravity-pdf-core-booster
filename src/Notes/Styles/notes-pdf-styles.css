@@ -1,26 +1,26 @@
 .note {
-    margin: 0;
-    padding: 1.25mm;
+	margin: 0;
+	padding: 1.25mm;
 }
 
 .note-avatar {
-    float: left;
-    width: 45;
+	float: left;
+	width: 45;
 }
 
 .note-meta {
-    float: left;
-    padding-left: 2.5mm;
+	float: left;
+	padding-left: 2.5mm;
 }
 
 .note-additional-info {
-    font-size: 90%;
+	font-size: 90%;
 }
 
 .note .note-value {
-    clear: both;
-    border-left: 1mm solid #E6DB55;
-    background-color: #FFFBCC;
-    padding: 2mm 3mm;
-    margin: 2mm 0;
+	clear: both;
+	border-left: 1mm solid #E6DB55;
+	background-color: #FFFBCC;
+	padding: 2mm 3mm;
+	margin: 2mm 0;
 }

@@ -37,7 +37,7 @@ class AllProduct extends Field_Product {
 	 * @since 1.2
 	 */
 	public function html( $value = '', $label = true ) {
-		$selected_item = ($value) ? $value : $this->value();
+		$selected_item = ( $value ) ? $value : $this->value();
 
 		$html = '<ul class="checked product product-show-all-options">';
 		foreach ( $this->field->choices as $key => $option ) {
@@ -60,8 +60,8 @@ class AllProduct extends Field_Product {
 	 * @since 1.2
 	 */
 	private function get_option_markup( $option, $key, $selected ) {
-		$value            = apply_filters( 'gfpdf_show_field_value', false, $this->field, $option ); /* Set to `true` to show a field's value instead of the label */
-		$sanitized_option = ( $value ) ? $option['value'] : $option['text'];
+		$value             = apply_filters( 'gfpdf_show_field_value', false, $this->field, $option ); /* Set to `true` to show a field's value instead of the label */
+		$sanitized_option  = ( $value ) ? $option['value'] : $option['text'];
 		$sanitized_option .= ' - ' . $option['price'];
 
 		$option_name = ( $value ) ? $option['value'] : $option['text'];

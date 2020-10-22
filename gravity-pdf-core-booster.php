@@ -68,9 +68,12 @@ class GPDF_Core_Booster_Checks {
 			return null;
 		}
 
-		add_action( 'gfpdf_fully_loaded', function() {
-			require_once __DIR__ . '/src/bootstrap.php';
-		} );
+		add_action(
+			'gfpdf_fully_loaded',
+			function() {
+				require_once __DIR__ . '/src/bootstrap.php';
+			}
+		);
 	}
 
 	/**
@@ -84,7 +87,7 @@ class GPDF_Core_Booster_Checks {
 
 		/* Check if the Gravity PDF Minimum version requirements are met */
 		if ( defined( 'PDF_EXTENDED_VERSION' ) &&
-		     version_compare( PDF_EXTENDED_VERSION, $this->required_gravitypdf_version, '>=' )
+			 version_compare( PDF_EXTENDED_VERSION, $this->required_gravitypdf_version, '>=' )
 		) {
 			return true;
 		}
@@ -102,24 +105,27 @@ class GPDF_Core_Booster_Checks {
 	 */
 	public function display_notices() {
 		?>
-        <div class="error">
-            <p>
-                <strong><?php esc_html_e( 'Gravity PDF Core Booster Installation Problem', 'gravity-pdf-core-booster' ); ?></strong>
-            </p>
+		<div class="error">
+			<p>
+				<strong><?php esc_html_e( 'Gravity PDF Core Booster Installation Problem', 'gravity-pdf-core-booster' ); ?></strong>
+			</p>
 
-            <p><?php esc_html_e( 'The minimum requirements for the Gravity PDF Core Booster plugin have not been met. Please fix the issue(s) below to continue:', 'gravity-pdf-core-booster' ); ?></p>
-            <ul style="padding-bottom: 0.5em">
-				<?php foreach ( $this->notices as $notice ) : ?>
-                    <li style="padding-left: 20px;list-style: inside"><?php echo $notice; ?></li>
+			<p><?php esc_html_e( 'The minimum requirements for the Gravity PDF Core Booster plugin have not been met. Please fix the issue(s) below to continue:', 'gravity-pdf-core-booster' ); ?></p>
+			<ul style="padding-bottom: 0.5em">
+				<?php foreach ( $this->notices as $notice ): ?>
+					<li style="padding-left: 20px;list-style: inside"><?php echo $notice; ?></li>
 				<?php endforeach; ?>
-            </ul>
-        </div>
+			</ul>
+		</div>
 		<?php
 	}
 }
 
 /* Initialise the software */
-add_action( 'plugins_loaded', function() {
-	$gravitypdf_core_booster = new GPDF_Core_Booster_Checks();
-	$gravitypdf_core_booster->init();
-} );
+add_action(
+	'plugins_loaded',
+	function() {
+		$gravitypdf_core_booster = new GPDF_Core_Booster_Checks();
+		$gravitypdf_core_booster->init();
+	}
+);

@@ -63,8 +63,8 @@ class AllOptions extends Field_Option {
 	 * @since 1.2
 	 */
 	private function get_option_markup( $option, $key, $selected ) {
-		$value            = apply_filters( 'gfpdf_show_field_value', false, $this->field, $option ); /* Set to `true` to show a field's value instead of the label */
-		$sanitized_option = ( $value ) ? $option['value'] : $option['text'];
+		$value             = apply_filters( 'gfpdf_show_field_value', false, $this->field, $option ); /* Set to `true` to show a field's value instead of the label */
+		$sanitized_option  = ( $value ) ? $option['value'] : $option['text'];
 		$sanitized_option .= ' - ' . $option['price'];
 
 		$option_name = ( $value ) ? $option['value'] : $option['text'];

@@ -76,10 +76,13 @@ class AllMultiselect extends Field_Multiselect {
 	 * @since 1.0
 	 */
 	private function get_select_items_values( $value = '' ) {
-		$selected_items = ($value) ? $value : $this->value();
+		$selected_items = ( $value ) ? $value : $this->value();
 
-		return array_map( function( $item ) {
-			return $item['value'];
-		}, $selected_items );
+		return array_map(
+			function( $item ) {
+					return $item['value'];
+			},
+			$selected_items
+		);
 	}
 }

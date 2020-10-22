@@ -122,16 +122,19 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 		/* Ensure the settings have been set and we aren't too early in the process */
 		if ( isset( $this->settings['show_all_options'] ) && is_array( $this->settings['show_all_options'] ) ) {
 			$option_config = $this->settings['show_all_options'];
-			$products = new Field_Products( new GF_Field(), $entry, $class->gform, $class->misc );
+			$products      = new Field_Products( new GF_Field(), $entry, $class->gform, $class->misc );
 
 			/*
 			 * Override the Product Select field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'product' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->logger->notice( 'Override Product Select field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Product Select field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllProduct( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -143,10 +146,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Product Radio field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'product' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->logger->notice( 'Override Product Radio field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Product Radio field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllProduct( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -158,10 +164,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Option Select field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'option' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->logger->notice( 'Override Option Select field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Option Select field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllOptions( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -173,10 +182,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Option Radio field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'option' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->logger->notice( 'Override Option Radio field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Option Radio field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllOptions( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -188,10 +200,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Option Checkbox field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'option' && $field->get_input_type() === 'checkbox' && isset( $option_config['Checkbox'] ) ) {
-				$this->logger->notice( 'Override Option Radio field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Option Radio field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllOptions( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -203,10 +218,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Shipping Checkbox field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'shipping' && $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->logger->notice( 'Override Shipping Select field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Shipping Select field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllShipping( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -218,10 +236,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override the Shipping Radio field HTML processing if configured to do so
 			 */
 			if ( $field->type === 'shipping' && $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->logger->notice( 'Override Shipping Radio field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Shipping Radio field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				$class = new AllShipping( $field, $entry, $class->gform, $class->misc );
 				$class->set_products( $products );
@@ -233,10 +254,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Radio field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'radio' && isset( $option_config['Radio'] ) ) {
-				$this->logger->notice( 'Override Radio field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Radio field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				return new AllRadio( $field, $entry, $class->gform, $class->misc );
 			}
@@ -245,10 +269,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Select field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'select' && isset( $option_config['Select'] ) ) {
-				$this->logger->notice( 'Override Select field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Select field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				return new AllSelect( $field, $entry, $class->gform, $class->misc );
 			}
@@ -257,10 +284,13 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 * Override Checkbox field HTML processing if configured to do so
 			 */
 			if ( $field->get_input_type() === 'checkbox' && isset( $option_config['Checkbox'] ) ) {
-				$this->logger->notice( 'Override Checkbox field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+				$this->logger->notice(
+					'Override Checkbox field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				return new AllCheckbox( $field, $entry, $class->gform, $class->misc );
 			}
@@ -270,10 +300,12 @@ class DisplayAllOptions implements Helper_Interface_Actions, Helper_Interface_Fi
 			 */
 			if ( $field->get_input_type() === 'multiselect' && isset( $option_config['Multiselect'] ) ) {
 				$this->logger->notice(
-					'Override Multiselect field generator class', [
-					'f_id'    => $field->id,
-					'f_label' => $field->label,
-				] );
+					'Override Multiselect field generator class',
+					[
+						'f_id'    => $field->id,
+						'f_label' => $field->label,
+					]
+				);
 
 				return new AllMultiselect( $field, $entry, $class->gform, $class->misc );
 			}

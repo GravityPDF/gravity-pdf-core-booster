@@ -58,7 +58,7 @@ class DisplayFieldDescription implements Helper_Interface_Actions {
 		$settings = $settings['settings'];
 
 		if ( isset( $settings['include_field_description'] ) && $settings['include_field_description'] === 'Yes' ) {
-			$this->logger->notice( 'Show field descriptions in generated PDF.');
+			$this->logger->notice( 'Show field descriptions in generated PDF.' );
 
 			add_filter( 'gfpdf_pdf_field_content', [ $this, 'add_field_description' ], 10, 4 );
 		}

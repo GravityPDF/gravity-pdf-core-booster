@@ -64,24 +64,27 @@ class Bootstrap extends Helper_Abstract_Addon {
 		$group_checker->set_logger( $this->log );
 
 		/* Register our classes and pass back up to the parent initialiser */
-		$classes = array_merge( $classes, [
-			new FieldSelectorAddFields( $group_checker, GPDFAPI::get_form_class() ),
-			new FieldSelectorRegisterScriptsAndStyles( GPDFAPI::get_misc_class(), GPDFAPI::get_form_class() ),
-			new FilterFields(),
-			new LabelsAddFields( $group_checker ),
-			new DisplayFieldLabel(),
-			new OptionsAddFields( $group_checker ),
-			new DisplayAllOptions(),
-			new DisplayLabelOrValue(),
-			new OptionsAddStyles(),
-			new FieldDescriptionAddFields( $group_checker ),
-			new DisplayFieldDescription(),
-			new ProductTableAddFields( $group_checker ),
-			new DisableProductTable(),
-			new NotesAddFields( $group_checker ),
-			new DisplayNotes(),
-			new NotesAddStyles(),
-		] );
+		$classes = array_merge(
+			$classes,
+			[
+				new FieldSelectorAddFields( $group_checker, GPDFAPI::get_form_class() ),
+				new FieldSelectorRegisterScriptsAndStyles( GPDFAPI::get_misc_class(), GPDFAPI::get_form_class() ),
+				new FilterFields(),
+				new LabelsAddFields( $group_checker ),
+				new DisplayFieldLabel(),
+				new OptionsAddFields( $group_checker ),
+				new DisplayAllOptions(),
+				new DisplayLabelOrValue(),
+				new OptionsAddStyles(),
+				new FieldDescriptionAddFields( $group_checker ),
+				new DisplayFieldDescription(),
+				new ProductTableAddFields( $group_checker ),
+				new DisableProductTable(),
+				new NotesAddFields( $group_checker ),
+				new DisplayNotes(),
+				new NotesAddStyles(),
+			]
+		);
 
 		/* Run the setup */
 		parent::init( $classes );
@@ -116,18 +119,21 @@ class Bootstrap extends Helper_Abstract_Addon {
 $name = 'Gravity PDF Core Booster';
 $slug = 'gravity-pdf-core-booster';
 
-$plugin = apply_filters( 'gfpdf_core_booster_initialise', new Bootstrap(
-	$slug,
-	$name,
-	'Gravity PDF',
-	GFPDF_CORE_BOOSTER_VERSION,
-	GFPDF_CORE_BOOSTER_FILE,
-	GPDFAPI::get_data_class(),
-	GPDFAPI::get_options_class(),
-	new Helper_Singleton(),
-	new Helper_Logger( $slug, $name ),
-	new Helper_Notices()
-) );
+$plugin = apply_filters(
+	'gfpdf_core_booster_initialise',
+	new Bootstrap(
+		$slug,
+		$name,
+		'Gravity PDF',
+		GFPDF_CORE_BOOSTER_VERSION,
+		GFPDF_CORE_BOOSTER_FILE,
+		GPDFAPI::get_data_class(),
+		GPDFAPI::get_options_class(),
+		new Helper_Singleton(),
+		new Helper_Logger( $slug, $name ),
+		new Helper_Notices()
+	)
+);
 
 $plugin->set_edd_download_id( '13035' );
 $plugin->set_addon_documentation_slug( 'shop-plugin-core-booster-add-on' );

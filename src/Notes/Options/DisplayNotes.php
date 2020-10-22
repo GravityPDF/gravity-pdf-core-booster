@@ -100,7 +100,8 @@ class DisplayNotes implements Helper_Interface_Actions {
 					</div>
 				<?php endforeach; ?>
 			</div>
-		<?php endif;
+			<?php
+		endif;
 	}
 
 	/**

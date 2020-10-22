@@ -79,7 +79,6 @@ class DisableProductTable implements Helper_Interface_Actions {
 			}
 		}
 
-
 	}
 
 	/**

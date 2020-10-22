@@ -103,8 +103,8 @@ class DoesTemplateHaveGroup {
 	 */
 	private function ajax_template_request() {
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX
-		     && isset( $_POST['action'] ) && $_POST['action'] === 'gfpdf_get_template_fields'
-		     && isset( $_POST['template'] )
+			 && isset( $_POST['action'] ) && $_POST['action'] === 'gfpdf_get_template_fields'
+			 && isset( $_POST['template'] )
 		) {
 			return true;
 		}

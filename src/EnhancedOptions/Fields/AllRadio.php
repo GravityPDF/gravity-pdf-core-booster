@@ -37,7 +37,7 @@ class AllRadio extends Field_Radio {
 	 * @since 1.0
 	 */
 	public function html( $value = '', $label = true ) {
-		$selected_item = ($value) ? $value : $this->value();
+		$selected_item = ( $value ) ? $value : $this->value();
 		$field_choices = $this->field->choices;
 
 		/* Add Other option if present */

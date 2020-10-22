@@ -55,7 +55,7 @@ class AddStyles implements Helper_Interface_Actions {
 		$this->logger->notice( 'Include Global PDF CSS for Notes' );
 
 		echo '<style>' .
-		     file_get_contents( __DIR__ . '/notes-pdf-styles.css' ) .
-		     '</style>';
+			 file_get_contents( __DIR__ . '/notes-pdf-styles.css' ) .
+			 '</style>';
 	}
 }

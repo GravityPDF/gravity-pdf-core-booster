@@ -86,12 +86,26 @@ class DisplayFieldLabel implements Helper_Interface_Actions {
 	public function change_field_label_display( $label, $field ) {
 		switch ( $this->label_type ) {
 			case 'Admin':
-				$this->logger->notice( 'Show admin field label in PDFs', [ 'f_id' => $field->id, 'f_label' => $field->label, 'f_admin_label' => $field->adminLabel ] );
+				$this->logger->notice(
+					'Show admin field label in PDFs',
+					[
+						'f_id'          => $field->id,
+						'f_label'       => $field->label,
+						'f_admin_label' => $field->adminLabel,
+					]
+				);
 				return $field->adminLabel;
 			break;
 
 			case 'Admin Empty':
-				$this->logger->notice( 'Show admin field label in PDFs if not empty', [ 'f_id' => $field->id, 'f_label' => $field->label, 'f_admin_label' => $field->adminLabel ] );
+				$this->logger->notice(
+					'Show admin field label in PDFs if not empty',
+					[
+						'f_id'          => $field->id,
+						'f_label'       => $field->label,
+						'f_admin_label' => $field->adminLabel,
+					]
+				);
 				return ( strlen( $field->adminLabel ) === 0 ) ? $label : $field->adminLabel;
 			break;
 

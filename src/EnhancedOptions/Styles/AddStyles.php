@@ -54,7 +54,7 @@ class AddStyles implements Helper_Interface_Actions {
 		$this->logger->notice( 'Include Global PDF CSS for Enhanced Options' );
 
 		echo '<style>' .
-		     file_get_contents( __DIR__ . '/enhanced-option-selector-pdf-styles.css' ) .
-		     '</style>';
+			 file_get_contents( __DIR__ . '/enhanced-option-selector-pdf-styles.css' ) .
+			 '</style>';
 	}
 }
