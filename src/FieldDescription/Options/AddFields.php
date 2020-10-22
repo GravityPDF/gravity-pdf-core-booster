@@ -92,6 +92,11 @@ class AddFields implements Helper_Interface_Filters {
 				'tooltip' => '<h6>' . esc_html__( 'Show Field Description', 'gravity-pdf-core-booster' ) . '</h6>' . esc_html__( 'When enabled, the field description will be displayed in the PDF. The description is placed above or below the user response, depending on the "Description placement" option found in Form Settings.', 'gravity-pdf-core-booster' ),
 			];
 
+			if ( version_compare( PDF_EXTENDED_VERSION, '6.0.0-beta1', '>=' ) ) {
+				$settings['include_field_description']['type'] = 'toggle';
+				unset( $settings['include_field_description']['options'] );
+			}
+
 			$this->logger->notice( 'Add "include_field_description" field to settings' );
 		}
 

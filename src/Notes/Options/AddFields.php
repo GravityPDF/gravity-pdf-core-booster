@@ -91,6 +91,11 @@ class AddFields implements Helper_Interface_Filters {
 				'tooltip' => '<h6>' . esc_html__( 'Show Entry Notes', 'gravity-pdf-core-booster' ) . '</h6>' . sprintf( esc_html__( 'When enabled, any notes associated with the entry will be appended to the end of the PDF.', 'gravity-pdf-core-booster' ), '<code>', '</code>' ),
 			];
 
+			if ( version_compare( PDF_EXTENDED_VERSION, '6.0.0-beta1', '>=' ) ) {
+				$settings['display_entry_notes']['type'] = 'toggle';
+				unset( $settings['display_entry_notes']['options'] );
+			}
+
 			$this->logger->notice( 'Add display_entry_notes" field to settings' );
 		}
 
