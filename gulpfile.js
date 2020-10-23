@@ -36,8 +36,8 @@ gulp.task('language', function () {
 })
 
 gulp.task('watch', function () {
-  watch(['assets/**/js/*.js', '!assets/**/js/*.min.js'], function () { gulp.start('compress') })
-  watch(['assets/**/css/*.css', '!assets/**/css/*.min.css'], function () { gulp.start('minify') })
+  gulp.watch(['assets/**/js/*.js', '!assets/**/js/*.min.js'], gulp.series('compress'))
+  gulp.watch(['assets/**/css/*.css', '!assets/**/css/*.min.css'], gulp.series('minify'))
 })
 
 gulp.task('default', gulp.series(['language', 'minify', 'compress']))

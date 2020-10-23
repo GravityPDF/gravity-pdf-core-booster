@@ -60,8 +60,10 @@ class TestAllSelect extends WP_UnitTestCase {
 			],
 		];
 
+		$id = \GFAPI::add_form( [ 'title' => 'Form', 'fields' => [] ] );
+
 		$this->class = new AllSelect( $select, [
-			'form_id' => 0,
+			'form_id' => $id,
 			'id'      => 0,
 			'1'     => 'Option 2 Value',
 		], \GPDFAPI::get_form_class(), \GPDFAPI::get_misc_class() );

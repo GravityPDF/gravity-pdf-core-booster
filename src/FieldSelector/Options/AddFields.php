@@ -88,27 +88,37 @@ class AddFields implements Helper_Interface_Filters {
 		$override = apply_filters( 'gfpdf_override_field_selector_fields', false, $settings ); /* Change this to true to override the core / universal check */
 
 		if ( $override || $this->group_checker->has_group() ) {
+
+			$settings['form_field_filter_fields'] = [
+				'id'   => 'form_field_filter_fields',
+				'type' => version_compare( PDF_EXTENDED_VERSION, '6.0.0-beta1', '>=' ) ? 'toggle' : 'checkbox',
+				'name' => esc_html__( 'Filter Fields', 'gravity-pdf-core-booster' ),
+				'desc' => esc_html__( 'Enable the ability to control which Gravity Forms fields get displayed in the PDF.', 'gravity-pdf-core-booster' ),
+			];
+
 			$settings['form_field_selector'] = [
 				'id'         => 'form_field_selector',
-				'name'       => esc_html__( 'Display Fields', 'gravity-pdf-core-booster' ),
+				'name'       => esc_html__( 'Select fields to display in PDF', 'gravity-pdf-core-booster' ),
 				'type'       => 'select',
 				'inputClass' => 'gfpdf-friendly-select',
 				'multiple'   => true,
 				'options'    => $this->get_form_fields(),
-				'tooltip'    => '<h6>' . esc_html__( 'Display Fields', 'gravity-pdf-core-booster' ) . '</h6>' . sprintf( esc_html__( 'Control which Gravity Forms fields to display in the PDF. To use Product fields, set %1$sGroup Products%2$s to %1$sNo%2$s. To control HTML fields, enable the %1$sShow HTML Fields%2$s setting.', 'gravity-pdf-core-booster' ), '<em>', '</em>' ),
+				'desc'       => sprintf( esc_html__( 'Fields in the "Included" column will be displayed in the PDF. To use Product fields, set %1$sGroup Products%2$s to %1$sNo%2$s. To control HTML fields, enable the %1$sShow HTML Fields%2$s setting.', 'gravity-pdf-core-booster' ), '<em>', '</em>' ),
+				'class'      => 'gfpdf-hidden',
 			];
 
 			$settings['form_field_selector_enabled'] = [
 				'id'    => 'form_field_selector_enabled',
 				'type'  => 'hidden',
 				'class' => 'gfpdf-hidden',
-				'std'   => '0',
+				'std'   => '-1',
 			];
 
 			/* If we couldn't get the current fields, disable this feature */
 			if ( count( $settings['form_field_selector']['options'] ) === 0 ) {
 				unset( $settings['form_field_selector'] );
 				unset( $settings['form_field_selector_enabled'] );
+				unset( $settings['form_field_filter_fields'] );
 			} else {
 				$this->logger->notice( 'Add "form_field_selector" field to settings' );
 			}
@@ -134,7 +144,7 @@ class AddFields implements Helper_Interface_Filters {
 
 		$choices = [];
 		foreach ( $form['fields'] as $field ) {
-			if ( in_array( $field->type, apply_filters( 'gfpdf_form_field_selector_skip_field', [ 'page', 'captcha' ], $form ) ) ) {
+			if ( in_array( $field->type, apply_filters( 'gfpdf_form_field_selector_skip_field', [ 'page', 'captcha' ], $form ), true ) ) {
 				continue;
 			}
 

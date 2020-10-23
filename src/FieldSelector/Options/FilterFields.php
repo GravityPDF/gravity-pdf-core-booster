@@ -77,17 +77,32 @@ class FilterFields implements Helper_Interface_Filters {
 	 * @since 1.1
 	 */
 	public function filter_fields( $filter, $field, $entry, $form, $config ) {
-		/* All fields deselected so remove */
-		if ( ! isset( $config['settings']['form_field_selector'] ) && isset( $config['settings']['form_field_selector_enabled'] ) ) {
-			return true;
+		/* Skip if not activated */
+		if ( ! $this->is_field_selector_toggle_active( $config['settings'] ) ) {
+			return $filter;
 		}
 
-		if ( isset( $config['settings']['form_field_selector'] ) && ! in_array( $field->id, (array) $config['settings']['form_field_selector'] ) ) {
-			$this->logger->notice( 'Removing field %s from PDF display due to Form Field Selector option' );
-			return true;
+		/* Check if the selector isn't activated, or if the field is included in the selector */
+		if ( ! isset( $config['settings']['form_field_selector'] ) || in_array( (string) $field->id, (array) $config['settings']['form_field_selector'], true ) ) {
+			return $filter;
 		}
 
-		return $filter;
+		/* Selector activated, filter out undefined fields */
+		$this->logger->notice( 'Removing field %s from PDF display due to Form Field Selector option' );
+
+		return true;
 	}
 
+	/**
+	 * Checks if the PDF was setup before the Core Booster was installed, or if the checkbox / toggle is activated
+	 *
+	 * @param array $settings
+	 *
+	 * @return bool
+	 *
+	 * @since 1.3
+	 */
+	protected function is_field_selector_toggle_active( $settings ) {
+		return ! isset( $settings['form_field_filter_fields'] ) || in_array( $settings['form_field_filter_fields'], [ 'Yes', '1' ], true );
+	}
 }
