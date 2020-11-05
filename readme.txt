@@ -10,7 +10,7 @@ User's with a valid, active license key can receive support for this plugin by f
 
 = Version 1.3.0 =
 * Feature: Add support for Gravity PDF 6.0-beta1
-* Feature: Add ability to toggle the `Display Fields` setting on and off (default to off)
+* Feature: Add ability to toggle the `Display Fields` setting (default to off)
 * Accessibility: Move tooltip text to field description
 * Bug: Fix jQuery `isArray` deprecation warning
 * Bug: Fix jQuery `.change()` deprecation warning
