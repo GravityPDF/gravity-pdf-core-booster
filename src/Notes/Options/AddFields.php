@@ -78,7 +78,7 @@ class AddFields implements Helper_Interface_Filters {
 		$override          = apply_filters( 'gfpdf_override_notes_fields', false, $settings ); /* Change this to true to override the core / universal check */
 		$exclude_templates = apply_filters( 'gfpdf_excluded_templates', [], $settings, 'notes' ); /* Exclude this option for specific templates */
 
-		if ( ! in_array( $this->group_checker->get_template_name(), $exclude_templates ) && ( $override || $this->group_checker->has_group() ) ) {
+		if ( ! in_array( $this->group_checker->get_template_name(), $exclude_templates, true ) && ( $override || $this->group_checker->has_group() ) ) {
 			$settings['display_entry_notes'] = [
 				'id'      => 'display_entry_notes',
 				'name'    => esc_html__( 'Show Entry Notes?', 'gravity-pdf-core-booster' ),

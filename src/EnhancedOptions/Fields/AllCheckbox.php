@@ -61,8 +61,8 @@ class AllCheckbox extends Field_Checkbox {
 	private function get_option_markup( $option, $key, $selected ) {
 		$value = apply_filters( 'gfpdf_show_field_value', false, $this->field, $option ); /* Set to `true` to show a field's value instead of the label */
 
-		$sanitized_option = ( $value ) ? $option['value'] : $option['text'];
-		$checked          = ( in_array( wp_kses_post( $option['value'] ), $selected ) ) ? '&#9746;' : '&#9744;';
+		$sanitized_option = $value ? $option['value'] : $option['text'];
+		$checked          = in_array( wp_kses_post( $option['value'] ), $selected, true ) ? '&#9746;' : '&#9744;';
 
 		return "<li id='field-{$this->field->id}-option-$key'>
 				<span style='font-size: 125%; font-family: DejavuSansCondensed'>$checked</span> $sanitized_option

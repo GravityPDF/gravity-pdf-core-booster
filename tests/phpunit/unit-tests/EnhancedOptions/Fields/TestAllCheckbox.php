@@ -82,9 +82,11 @@ class TestAllCheckbox extends WP_UnitTestCase {
 			],
 		];
 
+		$id = \GFAPI::add_form( [ 'title' => 'Form', 'fields' => [] ] );
+
 		$this->class = new AllCheckbox( $checkbox, [
-			'form_id' => 0,
-			'id'      => 0,
+			'form_id' => $id,
+			'id'      => 1,
 			'1.2'     => 'Option 2 Value',
 			'1.4'     => 'Option 4 Value',
 		], \GPDFAPI::get_form_class(), \GPDFAPI::get_misc_class() );

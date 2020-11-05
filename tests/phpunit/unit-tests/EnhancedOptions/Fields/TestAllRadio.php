@@ -62,8 +62,10 @@ class TestAllRadio extends WP_UnitTestCase {
 
 		$select->enableOtherChoice = true;
 
+		$id = \GFAPI::add_form( [ 'title' => 'Form', 'fields' => [] ] );
+
 		$this->class = new AllRadio( $select, [
-			'form_id' => 0,
+			'form_id' => $id,
 			'id'      => 0,
 			'1'     => 'Option 2 Value',
 		], \GPDFAPI::get_form_class(), \GPDFAPI::get_misc_class() );
@@ -99,8 +101,9 @@ class TestAllRadio extends WP_UnitTestCase {
 		$this->assertNotFalse( strpos( $results, "&#9744;</span> Option 4 Value" ) );
 
 		/* Check the "other" option */
+		$id = \GFAPI::add_form( [ 'title' => 'Form', 'fields' => [] ] );
 		$this->class = new AllRadio( $this->class->field, [
-			'form_id' => 0,
+			'form_id' => $id,
 			'id'      => 0,
 			'1'     => 'My Other Option',
 		], \GPDFAPI::get_form_class(), \GPDFAPI::get_misc_class() );

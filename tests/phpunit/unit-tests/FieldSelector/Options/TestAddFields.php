@@ -110,18 +110,18 @@ class TestAddFields extends WP_UnitTestCase {
 
 		/* Check our option is included */
 		$results = $this->class->add_template_option( [] );
-		$this->assertCount( 2, $results );
+		$this->assertCount( 3, $results );
 		$this->assertArrayHasKey( 'form_field_selector', $results );
 
 		/* Check our option is included when using a universal template */
-		$this->assertCount( 2, $this->class->add_template_option( [] ) );
+		$this->assertCount( 3, $this->class->add_template_option( [] ) );
 
 		/* Check our option is not included when using a non-core or universal template */
 		$this->assertCount( 0, $this->class->add_template_option( [] ) );
 
 		/* Check our option is included when we use our overriding filter */
 		add_filter( 'gfpdf_override_field_selector_fields', '__return_true' );
-		$this->assertCount( 2, $this->class->add_template_option( [] ) );
+		$this->assertCount( 3, $this->class->add_template_option( [] ) );
 		remove_filter( 'gfpdf_override_field_selector_fields', '__return_true' );
 
 		/* Check the setting is disabled when no Gravity Form found */

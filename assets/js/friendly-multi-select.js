@@ -13,7 +13,7 @@
    * @param string|array type
    */
   function enableFieldType ($field, type) {
-    if (!$.isArray(type)) {
+    if (!Array.isArray(type)) {
       type = [type]
     }
 
@@ -21,7 +21,6 @@
       if ($.inArray(GPDFCOREBOOSTER.form[this.value], type) !== -1) {
         $(this)
           .prop('disabled', false)
-          .prop('selected', true)
       }
     })
 
@@ -35,7 +34,7 @@
    * @param string|array type
    */
   function disableFieldType ($field, type) {
-    if (!$.isArray(type)) {
+    if (!Array.isArray(type)) {
       type = [type]
     }
 
@@ -62,13 +61,6 @@
         selectionFooter: '<a class="gfpdf-friendly-select-remove-all" href="#">' + GPDFCOREBOOSTER.lang.removeAllFields + '</a>',
       })
 
-      /* If nothing yet selected, select all */
-      var $selectorEnabled = $('#gfpdf_settings\\[form_field_selector_enabled\\]')
-      if ($selectorEnabled.val() === '0') {
-        $(this).multiSelectGpdf('select_all')
-        $selectorEnabled.val('1')
-      }
-
       $(this).parent().on('click', '.gfpdf-friendly-select-add-all', function () {
         $self.multiSelectGpdf('select_all')
         return false
@@ -80,37 +72,67 @@
       })
     })
 
-    /* Add special conditions to the Field Selector */
-    var $fieldSelected = $('#gfpdf_settings\\[form_field_selector\\]')
+	var $legacySelectorEnabledMarker = $('#gfpdf_settings\\[form_field_selector_enabled\\]')
+	var $shouldFilterFields = $('#gfpdf_settings\\[form_field_selector\\]')
+	var $selectorEnabled = $('#gfpdf_settings\\[form_field_filter_fields\\]')
+	var $html = $('input[name=gfpdf_settings\\[show_html\\]]')
+	var $products = $('input[name=gfpdf_settings\\[group_product_fields\\]]')
 
-    /* Toggle HTML fields */
-    var $html = $('input[name=gfpdf_settings\\[show_html\\]]')
-    $html.change(function () {
-      switch ($(this).filter(':checked').val()) {
-        case 'Yes':
-          enableFieldType($fieldSelected, 'html')
-          break
+	/* Add special conditions to the Field Selector */
+	var parent_selector = (version_compare(GPDFCOREBOOSTER.gpdfVersion, '6.0.0-beta1', '>=')) ? 'div' : 'tr'
 
-        case 'No':
-        case 'Disable':
-          disableFieldType($fieldSelected, 'html')
-          break
-      }
-    })
+	$selectorEnabled.on('change', function () {
+		if ($(this).prop('checked')) {
+			$shouldFilterFields.closest(parent_selector).show()
+			$html.trigger('change')
+			$products.trigger('change')
+		} else {
+			$shouldFilterFields.multiSelectGpdf('deselect_all')
+			$shouldFilterFields.multiSelectGpdf('refresh')
+			$shouldFilterFields.closest(parent_selector).hide()
+		}
+	})
 
-    /* Toggle Product fields */
-    var $products = $('input[name=gfpdf_settings\\[group_product_fields\\]]')
-    $products.change(function () {
-      switch ($(this).filter(':checked').val()) {
-        case 'Yes':
-          disableFieldType($fieldSelected, ['product', 'quantity', 'option', 'total', 'shipping', 'tax', 'discount', 'subtotal', 'coupon'])
-          break
+	if ($legacySelectorEnabledMarker.val() !== '-1') {
+		$selectorEnabled.prop('checked', true)
+		$legacySelectorEnabledMarker.val('-1')
+	}
 
-        case 'No':
-          enableFieldType($fieldSelected, ['product', 'quantity', 'option', 'total', 'shipping', 'tax', 'discount', 'subtotal', 'coupon'])
-          break
-      }
-    })
+	/* Toggle HTML fields */
+	$html.on('change', function () {
+		if (!$selectorEnabled.prop('checked')) {
+			return
+		}
+
+		switch ($(this).filter(':checked').val()) {
+			case 'Yes':
+				enableFieldType($shouldFilterFields, 'html')
+				break
+
+			default:
+				disableFieldType($shouldFilterFields, 'html')
+				break
+		}
+	})
+
+	/* Toggle Product fields */
+	$products.on('change', function () {
+		if (!$selectorEnabled.prop('checked')) {
+			return
+		}
+
+		switch ($(this).filter(':checked').val()) {
+			case 'Yes':
+				disableFieldType($shouldFilterFields, ['product', 'quantity', 'option', 'total', 'shipping', 'tax', 'discount', 'subtotal', 'coupon'])
+				break
+
+			default:
+				enableFieldType($shouldFilterFields, ['product', 'quantity', 'option', 'total', 'shipping', 'tax', 'discount', 'subtotal', 'coupon'])
+				break
+		}
+	})
+
+  	$selectorEnabled.trigger('change')
   }
 
   /**
@@ -127,7 +149,7 @@
     } else {
       var $select = $('#gfpdf_settings\\[template\\]')
       currentTemplate = $select.val()
-      $select.parent().change(function () {
+      $select.parent().on('change', function() {
         var value = $(this).find('select').val()
 
         if (currentTemplate !== value) {

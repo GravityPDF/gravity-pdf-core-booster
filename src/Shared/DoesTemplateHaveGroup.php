@@ -72,7 +72,7 @@ class DoesTemplateHaveGroup {
 		}
 
 		$template_info = $this->templates->get_template_info_by_id( $template_name );
-		if ( $template_info['group'] === 'Core' || $template_info['group'] === 'Universal (Premium)' ) {
+		if ( isset( $template_info['group'] ) && ( $template_info['group'] === 'Core' || $template_info['group'] === 'Universal (Premium)' ) ) {
 			$this->logger->notice( 'The PDF Template is in a core or universal group.', $template_info );
 
 			return true;

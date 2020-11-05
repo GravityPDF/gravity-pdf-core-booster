@@ -9,9 +9,8 @@
     <exclude-pattern>/bin/*</exclude-pattern>
     <exclude-pattern>/tmp/*</exclude-pattern>
     <exclude-pattern>*.js</exclude-pattern>
+	<exclude-pattern>*.css</exclude-pattern>
     <exclude-pattern>/tests/*</exclude-pattern>
-    <exclude-pattern>/src/Cli/Commands/templates/*</exclude-pattern>
-    <exclude-pattern>/src/deprecated.php</exclude-pattern>
 
     <!-- Include the WordPress Core standard. -->
     <rule ref="WordPress-Core">
@@ -19,6 +18,7 @@
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 		<exclude name="WordPress.PHP.YodaConditions"/>
 		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
 		<exclude name="WordPress.WhiteSpace.PrecisionAlignment"/>
 		<exclude name="WordPress.NamingConventions.ValidVariableName"/>
 		<exclude name="WordPress.NamingConventions.ValidFunctionName"/>
@@ -27,7 +27,7 @@
 
     <!-- Include the best parts of PSR-1 -->
     <rule ref="PSR1.Classes.ClassDeclaration">
-        <exclude-pattern>/gravity-pdf-developer-toolkit.php</exclude-pattern>
+        <exclude-pattern>/gravity-pdf-core-booster.php</exclude-pattern>
     </rule>
 
     <rule ref="Squiz.Classes.ValidClassName"/>
@@ -53,7 +53,7 @@
 
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="gravity-pdf-core-booster,gravity-forms-pdf-extended"/>
+            <property name="text_domain" type="array" value="gravity-pdf-core-booster,gravity-forms-pdf-extended, gravityforms"/>
         </properties>
     </rule>
 

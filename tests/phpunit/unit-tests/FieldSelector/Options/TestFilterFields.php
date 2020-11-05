@@ -73,7 +73,7 @@ class TestFilterFields extends WP_UnitTestCase {
 	 * @dataProvider provider_filter_fields
 	 */
 	public function test_filter_fields( $expected, $field ) {
-		$form_field_selector = [ 1, 4, 5, 7, 9 ];
+		$form_field_selector = [ '1', '4', '5', '7', '9' ];
 
 		$this->assertSame( $expected, $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_selector' => $form_field_selector ] ] ) );
 	}
