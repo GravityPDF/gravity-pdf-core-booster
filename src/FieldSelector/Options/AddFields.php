@@ -103,7 +103,7 @@ class AddFields implements Helper_Interface_Filters {
 				'inputClass' => 'gfpdf-friendly-select',
 				'multiple'   => true,
 				'options'    => $this->get_form_fields(),
-				'desc'       => sprintf( esc_html__( 'Fields in the "Included" column will be displayed in the PDF. To use Product fields, set %1$sGroup Products%2$s to %1$sNo%2$s. To control HTML fields, enable the %1$sShow HTML Fields%2$s setting.', 'gravity-pdf-core-booster' ), '<em>', '</em>' ),
+				'desc'       => sprintf( esc_html__( 'Fields in the right hand column (labelled %1$sIncluded%2$s) will get displayed in the PDF. To use Product fields, set %1$sGroup Products%2$s setting to %1$sNo%2$s. To control HTML fields, enable the %1$sShow HTML Fields%2$s setting.', 'gravity-pdf-core-booster' ), '<em>', '</em>' ),
 				'class'      => 'gfpdf-hidden',
 			];
 

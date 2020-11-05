@@ -90,7 +90,7 @@ class AddFields implements Helper_Interface_Filters {
 					'No'  => esc_html__( 'No', 'gravity-pdf-core-booster' ),
 				],
 				'std'     => 'Yes',
-				'tooltip' => '<h6>' . esc_html__( 'Group Products?', 'gravity-pdf-core-booster' ) . '</h6>' . esc_html__( 'When enabled, your product fields are all grouped at the end of the PDF in a formatted table (like the Gravity Forms entry details page).', 'gravity-pdf-core-booster' ),
+				'desc'    => esc_html__( 'When enabled, your product fields are all grouped at the end of the PDF in a formatted table (like the Gravity Forms entry details page).', 'gravity-pdf-core-booster' ),
 			];
 
 			/* Add disable product feature if Gravity PDF a specific version */

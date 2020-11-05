@@ -89,7 +89,7 @@ class AddFields implements Helper_Interface_Filters {
 					'No'  => esc_html__( 'No', 'gravity-pdf-core-booster' ),
 				],
 				'std'     => 'No',
-				'tooltip' => '<h6>' . esc_html__( 'Show Field Description', 'gravity-pdf-core-booster' ) . '</h6>' . esc_html__( 'When enabled, the field description will be displayed in the PDF. The description is placed above or below the user response, depending on the "Description placement" option found in Form Settings.', 'gravity-pdf-core-booster' ),
+				'desc'    => sprintf( esc_html__( 'When enabled, the field description will be displayed in the PDF. The description is placed above or below the user response, depending on the %1$sDescription placement%2$s option found in Form Settings.', 'gravity-pdf-core-booster' ), '<em>', '</em>' ),
 			];
 
 			if ( version_compare( PDF_EXTENDED_VERSION, '6.0.0-beta1', '>=' ) ) {

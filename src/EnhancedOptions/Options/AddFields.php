@@ -89,7 +89,7 @@ class AddFields implements Helper_Interface_Filters {
 					'Select'      => esc_html__( 'Show all options for Select Fields', 'gravity-pdf-core-booster' ),
 					'Multiselect' => esc_html__( 'Show all options for Multiselect Fields', 'gravity-pdf-core-booster' ),
 				],
-				'tooltip' => '<h6>' . esc_html__( 'Show Field Options', 'gravity-forms-pdf-extended' ) . '</h6>' . esc_html__( 'Controls whether Select, Radio, Multiselect and Checkbox fields will show all available options with the selected items checked in the PDF.', 'gravity-pdf-core-booster' ),
+				'desc'    => esc_html__( 'Controls whether Select, Radio, Multiselect and Checkbox fields will show all available options with the selected items checked in the PDF.', 'gravity-pdf-core-booster' ),
 			];
 
 			$settings['option_label_or_value'] = [
@@ -101,7 +101,7 @@ class AddFields implements Helper_Interface_Filters {
 					'Value' => esc_html__( 'Show Value', 'gravity-pdf-core-booster' ),
 				],
 				'std'     => 'Label',
-				'tooltip' => '<h6>' . esc_html__( 'Option Field Display', 'gravity-forms-pdf-extended' ) . '</h6>' . esc_html__( 'Controls whether Select, Radio, Multiselect and Checkbox fields will show the selected option label or value in the PDF.', 'gravity-pdf-core-booster' ),
+				'desc'    => esc_html__( 'Controls whether Select, Radio, Multiselect and Checkbox fields will show the selected option label or value in the PDF.', 'gravity-pdf-core-booster' ),
 			];
 
 			$this->logger->notice( 'Add "show_all_options" and "option_label_or_value" fields to settings' );
