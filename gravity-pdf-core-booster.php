@@ -8,7 +8,7 @@
  * Author URI:      https://gravitypdf.com
  * Text Domain:     gravity-pdf-core-booster
  * Domain Path:     /languages
- * Version:         1.2.2
+ * Version:         1.3.0
  */
 
 /**
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'GFPDF_CORE_BOOSTER_FILE', __FILE__ );
-define( 'GFPDF_CORE_BOOSTER_VERSION', '1.2.2' );
+define( 'GFPDF_CORE_BOOSTER_VERSION', '1.3.0' );
 
 /**
  * Class GPDF_Core_Booster_Checks
