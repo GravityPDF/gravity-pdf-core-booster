@@ -78,6 +78,31 @@ class TestFilterFields extends WP_UnitTestCase {
 		$this->assertSame( $expected, $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_selector' => $form_field_selector ] ] ) );
 	}
 
+	public function test_filter_fields_all_unselected() {
+		$field = json_decode( '{"id": 1}' );
+
+		$this->assertTrue( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_selector_enabled' => '0' ] ] ) );
+		$this->assertTrue( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '1' ] ] ) );
+		$this->assertTrue( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => 'Yes' ] ] ) );
+	}
+
+	public function test_filter_fields_legacy_selected() {
+		$field = json_decode( '{"id": 1}' );
+
+		$this->assertFalse( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '1', 'form_field_selector' => [ '1' ] ] ] ) );
+		$this->assertFalse( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '-1', 'form_field_selector' => [ '1' ] ] ] ) );
+
+		$this->assertTrue( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '1', 'form_field_selector' => [ '2' ] ] ] ) );
+		$this->assertFalse( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '1', 'form_field_filter_fields' => '-1', 'form_field_selector' => [ '1' ] ] ] ) );
+	}
+
+	public function test_filter_fields_selected() {
+		$field = json_decode( '{"id": 1}' );
+
+		$this->assertFalse( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '1', 'form_field_selector' => [ '1' ] ] ] ) );
+		$this->assertTrue( $this->class->filter_fields( false, $field, '', '', [ 'settings' => [ 'form_field_filter_fields' => '1', 'form_field_selector' => [ '2' ] ] ] ) );
+	}
+
 	/**
 	 * @return array
 	 * @since 1.1

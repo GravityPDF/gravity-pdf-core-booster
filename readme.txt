@@ -8,7 +8,10 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
-= Version 1.3.0 =
+= Version 1.3.1, November 11, 2020 =
+* Bug: Fix issue with the `Display Fields` setting not removing ALL fields in the PDF
+
+= Version 1.3.0, November 9, 2020 =
 * Feature: Add support for Gravity PDF 6.0-beta1
 * Feature: Add ability to toggle the `Display Fields` setting (default to off)
 * Accessibility: Move tooltip text to field description

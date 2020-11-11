@@ -77,13 +77,15 @@ class FilterFields implements Helper_Interface_Filters {
 	 * @since 1.1
 	 */
 	public function filter_fields( $filter, $field, $entry, $form, $config ) {
-		/* Skip if not activated */
-		if ( ! $this->is_field_selector_toggle_active( $config['settings'] ) ) {
+		$settings = $config['settings'];
+
+		/* Skip this feature if not activate */
+		if ( ! $this->is_field_selector_toggle_active( $settings ) && ! $this->is_legacy_selector_enabled( $settings ) && ! $this->does_field_selector_have_value( $settings ) ) {
 			return $filter;
 		}
 
 		/* Check if the selector isn't activated, or if the field is included in the selector */
-		if ( ! isset( $config['settings']['form_field_selector'] ) || in_array( (string) $field->id, (array) $config['settings']['form_field_selector'], true ) ) {
+		if ( $this->does_field_selector_have_value( $settings ) && in_array( (string) $field->id, (array) $settings['form_field_selector'], true ) ) {
 			return $filter;
 		}
 
@@ -94,7 +96,7 @@ class FilterFields implements Helper_Interface_Filters {
 	}
 
 	/**
-	 * Checks if the PDF was setup before the Core Booster was installed, or if the checkbox / toggle is activated
+	 * Checks if the (new) option is present, signifying the ser has enabled this feature
 	 *
 	 * @param array $settings
 	 *
@@ -103,6 +105,32 @@ class FilterFields implements Helper_Interface_Filters {
 	 * @since 1.3
 	 */
 	protected function is_field_selector_toggle_active( $settings ) {
-		return ! isset( $settings['form_field_filter_fields'] ) || in_array( $settings['form_field_filter_fields'], [ 'Yes', '1' ], true );
+		return isset( $settings['form_field_filter_fields'] ) && in_array( $settings['form_field_filter_fields'], [ 'Yes', '1' ], true );
+	}
+
+	/**
+	 * Checks to see if the legacy option is present, signifying the user has enabled this feature
+	 *
+	 * @param array $settings
+	 *
+	 * @return bool
+	 *
+	 * @since 1.3.1
+	 */
+	protected function is_legacy_selector_enabled( $settings ) {
+		return isset( $settings['form_field_selector_enabled'] ) && $settings['form_field_selector_enabled'] !== '-1';
+	}
+
+	/**
+	 * Checks to see if the user has manually selected any fields
+	 *
+	 * @param array $settings
+	 *
+	 * @return bool
+	 *
+	 * @since 1.3.1
+	 */
+	protected function does_field_selector_have_value( $settings ) {
+		return ! empty( $settings['form_field_selector'] );
 	}
 }
