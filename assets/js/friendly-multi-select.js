@@ -50,6 +50,8 @@
   }
 
   function initialize () {
+  	var is_v6 = version_compare(GPDFCOREBOOSTER.gpdfVersion, '6.0.0-beta1', '>=')
+
     /* Initialise our friendly selector */
     $('.gfpdf-friendly-select').each(function () {
       var $self = $(this)
@@ -79,7 +81,7 @@
 	var $products = $('input[name=gfpdf_settings\\[group_product_fields\\]]')
 
 	/* Add special conditions to the Field Selector */
-	var parent_selector = (version_compare(GPDFCOREBOOSTER.gpdfVersion, '6.0.0-beta1', '>=')) ? 'div' : 'tr'
+	var parent_selector = is_v6 ? 'div' : 'tr'
 
 	$selectorEnabled.on('change', function () {
 		if ($(this).prop('checked')) {
@@ -93,7 +95,7 @@
 		}
 	})
 
-	if ($legacySelectorEnabledMarker.val() !== '-1') {
+	if ($legacySelectorEnabledMarker.val() !== '-1' || $shouldFilterFields.find('option[selected="selected"]').length > 0) {
 		$selectorEnabled.prop('checked', true)
 		$legacySelectorEnabledMarker.val('-1')
 	}
@@ -104,7 +106,13 @@
 			return
 		}
 
-		switch ($(this).filter(':checked').val()) {
+		/* Don't do anything if the current element isn't checked */
+		var val = $(this).filter(':checked').val()
+		if (val === undefined && ! is_v6) {
+			return
+		}
+
+		switch (val) {
 			case 'Yes':
 				enableFieldType($shouldFilterFields, 'html')
 				break
@@ -121,7 +129,13 @@
 			return
 		}
 
-		switch ($(this).filter(':checked').val()) {
+		/* Don't do anything if the current element isn't checked */
+		var val = $(this).filter(':checked').val()
+		if (val === undefined && ! is_v6) {
+			return
+		}
+
+		switch (val) {
 			case 'Yes':
 				disableFieldType($shouldFilterFields, ['product', 'quantity', 'option', 'total', 'shipping', 'tax', 'discount', 'subtotal', 'coupon'])
 				break
