@@ -8,6 +8,10 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.3.2, November 18, 2020 =
+* Bug: Fix HTML fields showing as disabled in the `Display Fields` setting when they should be enabled
+* Bug: Fix `Display Fields` setting showing as inactive for users upgrading from Core Booster 1.1 or earlier
+
 = Version 1.3.1, November 11, 2020 =
 * Bug: Fix issue with the `Display Fields` setting not removing ALL fields in the PDF
 
