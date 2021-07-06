@@ -85,7 +85,7 @@ class AllOptions extends Field_Option {
 	 */
 	private function is_checked( $text, $selected ) {
 		foreach ( $selected as $item ) {
-			if ( $text === wp_specialchars_decode( $item['option_name'], ENT_QUOTES ) ) {
+			if ( esc_html( $text ) === $item['option_name'] ) {
 				return true;
 			}
 		}
