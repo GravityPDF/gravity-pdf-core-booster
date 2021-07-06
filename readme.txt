@@ -8,6 +8,9 @@ User's with a valid, active license key can receive support for this plugin by f
 
 == Changelog ==
 
+= Version 1.3.3, July 7, 2021 =
+* Bug: Fix special character comparison issue when displaying Option fields with `Show All Options` setting enabled
+
 = Version 1.3.2, November 18, 2020 =
 * Bug: Fix HTML fields showing as disabled in the `Display Fields` setting when they should be enabled
 * Bug: Fix `Display Fields` setting showing as inactive for users upgrading from Core Booster 1.1 or earlier
